@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>みったー PROFILE BOOK</title>
+<style>
+:root{
+ --ink:#5f6184;--muted:#9698b2;--purple:#8986c9;--line:#d9d8ea;
+ --pink:#fff0f6;--blue:#edf6ff;--lav:#f1efff;--mint:#eefaf6;--cream:#fff8e8;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+background:radial-gradient(circle at 10% 5%,#fff 0 8%,transparent 9%),linear-gradient(135deg,#f4f1ff,#eef8ff 50%,#fff1f7);min-height:100vh}
+header{position:sticky;top:0;z-index:20;background:#ffffffdf;backdrop-filter:blur(12px);border-bottom:1px solid #ddddef}
+.head{max-width:1050px;margin:auto;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{font-family:serif;font-size:20px;color:#7772b3;font-weight:bold}.buttons{display:flex;gap:6px;flex-wrap:wrap}
+button{border:1px solid #d1d0e7;border-radius:999px;padding:8px 12px;background:white;color:#696b91;font-weight:bold}
+.primary{background:#8582c5;color:#fff;border-color:#8582c5}
+main{max-width:1050px;margin:auto;padding:16px 12px 35px}
+.hero{text-align:center;padding:8px 0 18px}
+.hero h1{font-family:serif;font-size:clamp(32px,8vw,58px);margin:0;color:#7471b3;letter-spacing:.06em}
+.hero p{margin:5px;color:#9698b2}
+.notice{max-width:700px;margin:10px auto;padding:9px 12px;border-radius:15px;background:#fff8fb;border:1px solid #eed7e4;font-size:11px}
+.layout{display:grid;grid-template-columns:minmax(330px,1fr) minmax(330px,510px);gap:18px;align-items:start}
+.form{background:#ffffffc9;border:1px solid #deddee;border-radius:24px;padding:15px;box-shadow:0 10px 30px #7772a012}
+.block{padding:14px;margin-bottom:12px;border:1px solid var(--line);border-radius:20px;background:#fff}
+.block:nth-child(1){background:linear-gradient(135deg,#f5f3ff,#fff)}
+.block:nth-child(2){background:linear-gradient(135deg,var(--pink),#fff)}
+.block:nth-child(3){background:linear-gradient(135deg,var(--blue),#fff)}
+.block:nth-child(4){background:linear-gradient(135deg,var(--mint),#fff)}
+.block:nth-child(5){background:linear-gradient(135deg,var(--cream),#fff)}
+.block:nth-child(6){background:linear-gradient(135deg,#f2edff,#fff)}
+.block:nth-child(7){background:linear-gradient(135deg,#fff0f8,#fff)}
+.block h2{font-family:serif;font-size:20px;color:#7772b3;margin:0 0 9px}
+label{display:block;font-size:12px;font-weight:bold;margin:8px 0 4px}
+input,textarea{width:100%;padding:9px 10px;border:1px solid #d8d9e8;border-radius:10px;background:#ffffffcc;color:#555979;font:inherit}
+textarea{min-height:60px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.photoUpload{border:2px dashed #c8c5e8;border-radius:16px;padding:11px;text-align:center;font-size:12px;color:#8587a6;background:#fff9}
+.preview{position:sticky;top:72px}
+.sheet{background:#fffdfd;border:8px solid #fff;border-radius:28px;box-shadow:0 14px 40px #7772a522;overflow:hidden;position:relative}
+.sheet:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 10%,#cfdcff55 0 13%,transparent 14%),radial-gradient(circle at 92% 24%,#ead8ff66 0 16%,transparent 17%),radial-gradient(circle at 35% 92%,#ffdbea55 0 17%,transparent 18%);pointer-events:none}
+.page{position:relative;padding:18px}
+.cover{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;padding-bottom:14px;border-bottom:2px dotted #d9d8ea}
+.avatar{width:120px;height:120px;object-fit:cover;border-radius:22px;border:5px solid white;box-shadow:0 4px 12px #8884;background:#f0f0f5}
+.noPhoto{display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px}
+.cover h2{font-family:serif;color:#706db0;font-size:30px;margin:0}.cover .sub{font-size:11px;color:#9698b2;margin-top:4px}
+.ribbon{display:inline-block;background:#8582c5;color:white;border-radius:999px;padding:4px 9px;font-size:9px;margin-top:7px}
+.sec{margin-top:12px}.sec h3{font-family:serif;color:#7772b3;font-size:18px;margin:0 0 6px;padding-bottom:4px;border-bottom:1px dashed #d8d7e8}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:6px}.item{background:#ffffffaa;border:1px solid #dfdfec;border-radius:10px;padding:7px;min-height:39px}.item.full{grid-column:1/-1}.q{font-size:9px;color:#999bb2}.a{font-size:10px;margin-top:2px;white-space:pre-wrap;word-break:break-word}
+.sec.love .item{background:#fff7fa}.sec.fav .item{background:#f7fbff}.sec.adult .item{background:#f5fcf9}.sec.people .item{background:#fff8fc}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:7px}.photoBox{height:80px;border:2px dashed #c9c8df;border-radius:12px;overflow:hidden;background:#fff9;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:9px}.photoBox img{width:100%;height:100%;object-fit:cover}
+.actions{text-align:center;margin-top:8px}.small{font-size:10px;color:#999bb0;text-align:center;margin-top:12px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.preview{position:static;order:-1}.form{padding:10px}.cover{grid-template-columns:95px 1fr}.avatar{width:95px;height:95px}.sheet{border-width:5px}.page{padding:12px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="logo">みったー PROFILE BOOK ♡</div><div class="buttons"><button onclick="save()">保存</button><button onclick="load()">読み込み</button><button class="primary" onclick="saveImage()">完成画像</button></div></div></header>
+<main>
+<div class="hero"><h1>みったー</h1><p>PROFILE BOOK　♡　好きなこと、こっそり教えてね</p><div class="notice">🔒 ネット用プロフィール帳です。住所・電話番号・勤務先など個人を特定できる情報は書かないでね。SNSは公開してよい活動先だけ任意でどうぞ。</div></div>
+<div class="layout">
+<div class="form">
+
+<div class="block"><h2>👤 PROFILE</h2>
+<div class="photoUpload">📷 プロフィール画像<input id="photo" type="file" accept="image/*"></div>
+<div class="two"><div><label>名前・ハンドルネーム</label><input id="name"></div><div><label>誕生日</label><input id="birthday" placeholder="○月○日"></div></div>
+<div class="two"><div><label>星座</label><input id="zodiac"></div><div><label>干支</label><input id="eto"></div></div>
+<div class="two"><div><label>血液型</label><input id="blood"></div><div><label>利き手</label><input id="hand"></div></div>
+<label>あだ名・呼ばれ方</label><input id="nickname"><label>性格</label><textarea id="personality"></textarea>
+<div class="two"><div><label>休日の過ごし方</label><input id="holiday"></div><div><label>趣味</label><input id="hobby"></div></div>
+<label>特技</label><input id="skill"><label>SNS・活動場所（任意）</label><input id="sns" placeholder="X / Instagram / pixiv など"></div>
+
+<div class="block"><h2>💕 LOVE</h2>
+<label>好きな人</label><input id="lovePerson" placeholder="秘密・イニシャル・キャラなどでもOK">
+<label>好みのタイプ</label><input id="type"><label>好きになるきっかけ</label><input id="trigger">
+<div class="two"><div><label>一目惚れする？</label><input id="firstLove"></div><div><label>追う派？追われたい？</label><input id="chase"></div></div>
+<div class="two"><div><label>告白する派？されたい？</label><input id="confess"></div><div><label>年上・同い年・年下？</label><input id="ageType"></div></div>
+<label>甘える派？甘えられたい？</label><input id="sweet"><div class="two"><div><label>独占欲は強い？</label><input id="possessive"></div><div><label>嫉妬するタイプ？</label><input id="jealous"></div></div>
+<label>恋愛するとどうなる？</label><textarea id="loveMode"></textarea><label>理想のデート</label><textarea id="date"></textarea>
+<label>恋愛で譲れないこと</label><textarea id="loveRule"></textarea><label>恋人にされて嬉しいこと</label><textarea id="happy"></textarea>
+<label>恋人に言われたい言葉</label><input id="wanted"><label>あなたは受け攻め？（自由入力）</label><input id="role"></div>
+
+<div class="block"><h2>⭐ 推し & FAVORITES</h2>
+<label>推し</label><input id="oshi"><label>推しの好きなところ</label><textarea id="oshiWhy"></textarea>
+<div class="two"><div><label>好きな漫画</label><input id="manga"></div><div><label>好きなアニメ</label><input id="anime"></div></div>
+<label>好きなキャラクター</label><input id="character">
+<div class="two"><div><label>好きなドラマ（今）</label><input id="dramaNow"></div><div><label>好きなドラマ（昔）</label><input id="dramaOld"></div></div>
+<div class="two"><div><label>好きな映画</label><input id="movie"></div><div><label>好きな音楽</label><input id="music"></div></div>
+<div class="two"><div><label>好きな色</label><input id="color"></div><div><label>好きな食べ物</label><input id="food"></div></div>
+<div class="two"><div><label>好きな動物</label><input id="animal"></div><div><label>好きな人と推しは同じ？</label><input id="same"></div></div></div>
+
+<div class="block"><h2>🔥 ちょっと聞きたい♡</h2>
+<label>フェチ・好きな部位</label><input id="fetish"><div class="two"><div><label>好きな声</label><input id="voice"></div><div><label>好きな仕草</label><input id="gesture"></div></div>
+<label>好きな癖</label><input id="habit"><label>弱点</label><input id="weak"><label>弱いシチュエーション</label><textarea id="weakScene"></textarea>
+<label>されるとドキッとすること</label><textarea id="dokidoki"></textarea><label>色気を感じる瞬間</label><input id="sexy"><label>好きなシチュエーション</label><textarea id="scene"></textarea>
+<label>人には言いにくい好きなもの</label><input id="secretLike"><label>ここだけの秘密♡</label><textarea id="secret"></textarea></div>
+
+<div class="block"><h2>💡 IF...</h2>
+<div class="two"><div><label>生まれ変わるなら？</label><input id="reborn"></div><div><label>魔法が使えたら？</label><input id="magic"></div></div>
+<label>一か月休みになったら？</label><input id="month"><label>300万円当たったら？</label><input id="money"><label>無人島に1つ持っていくなら？</label><input id="island"><label>1日だけ透明人間になったら？</label><input id="invisible"></div>
+
+<div class="block"><h2>❓ QUESTIONS</h2>
+<label>大人になったと感じる瞬間</label><textarea id="adult"></textarea><label>幸せを感じる瞬間</label><textarea id="happyMoment"></textarea><label>座右の銘・好きな言葉</label><input id="motto"><label>自分の好きなところ</label><input id="good"><label>自分の直したいところ</label><input id="bad"><label>自分を動物に例えるなら？</label><input id="selfAnimal"><label>自分の取扱説明書</label><textarea id="manual"></textarea><label>最近のやらかし</label><input id="mistake"><label>最近一番笑ったこと</label><input id="laugh"><label>最近の良い思い出</label><textarea id="memory"></textarea></div>
+
+<div class="block"><h2>👑 みったーの○○な人</h2>
+<label>一番朝が弱そうな人</label><input id="p1"><label>一番寝落ちしそうな人</label><input id="p2"><label>一番酒が強そうな人</label><input id="p3"><label>一番酔うと変わりそうな人</label><input id="p4"><label>一番モテそうな人</label><input id="p5"><label>一番恋愛すると重そうな人</label><input id="p6"><label>一番嫉妬深そうな人</label><input id="p7"><label>一番独占欲が強そうな人</label><input id="p8"><label>一番甘え上手そうな人</label><input id="p9"><label>一番甘やかし上手そうな人</label><input id="p10"><label>一番押しに弱そうな人</label><input id="p11"><label>一番押しが強そうな人</label><input id="p12"><label>一番照れ屋そうな人</label><input id="p13"><label>一番色気がありそうな人</label><input id="p14"><label>一番ギャップがありそうな人</label><input id="p15"><label>一番秘密が多そうな人</label><input id="p16"><label>一番意外な趣味がありそうな人</label><input id="p17"><label>一番一緒に旅行したい人</label><input id="p18"><label>一番一緒に飲みたい人</label><input id="p19"><label>一番デートしてみたい人</label><input id="p20"><label>一番相談しやすそうな人</label><input id="p21"><label>一番頼りになりそうな人</label><input id="p22"><label>一番面白い人</label><input id="p23"><label>一番変人そうな人</label><input id="p24"></div>
+
+<div class="block"><h2>✨ OTHER</h2><label>好きなテーマ</label><input id="theme"><label>BEST 3</label><textarea id="best3"></textarea><label>もらえるとうれしいプレゼント</label><input id="gift"><label>チャレンジしてみたいこと</label><input id="challenge"><label>今ほしいもの</label><input id="want"><label>今一番行きたい場所</label><input id="place"><label>今年やりたいこと</label><input id="year"><label>いつかやってみたいこと</label><input id="someday"><label>Free Space</label><textarea id="free"></textarea>
+<div class="photoUpload">🖼️ 追加写真（任意）<input id="photos" type="file" accept="image/*" multiple></div></div>
+</div>
+
+<div class="preview">
+<div class="sheet" id="sheet"><div class="page">
+<div class="cover"><div class="avatar noPhoto" id="avatar">PHOTO</div><div><h2 id="pvName">みったー</h2><div class="sub" id="pvBirthday">PROFILE BOOK ♡</div><span class="ribbon">MY PROFILE</span></div></div>
+<div id="previewContent"></div>
+</div></div>
+<div class="actions"><button class="primary" onclick="saveImage()">📷 完成画像として保存</button><button onclick="save()">💾 入力内容を保存</button></div>
+<div class="small">空欄の質問は完成画像では非表示になります。</div>
+</div>
+</div>
+</main>
+<script>
+const groups=[
+['PROFILE','',[
+['name','名前・ハンドルネーム'],['birthday','誕生日'],['zodiac','星座'],['eto','干支'],['blood','血液型'],['hand','利き手'],['nickname','あだ名・呼ばれ方'],['personality','性格'],['holiday','休日の過ごし方'],['hobby','趣味'],['skill','特技'],['sns','SNS・活動場所']]],
+['LOVE','love',[
+['lovePerson','好きな人'],['type','好みのタイプ'],['trigger','好きになるきっかけ'],['firstLove','一目惚れする？'],['chase','追う派？追われたい？'],['confess','告白する派？されたい？'],['ageType','年上・同い年・年下？'],['sweet','甘える派？甘えられたい？'],['possessive','独占欲は強い？'],['jealous','嫉妬するタイプ？'],['loveMode','恋愛するとどうなる？'],['date','理想のデート'],['loveRule','恋愛で譲れないこと'],['happy','恋人にされて嬉しいこと'],['wanted','恋人に言われたい言葉'],['role','あなたは受け攻め？']]],
+['推し & FAVORITES','fav',[
+['oshi','推し'],['oshiWhy','推しの好きなところ'],['manga','好きな漫画'],['anime','好きなアニメ'],['character','好きなキャラクター'],['dramaNow','好きなドラマ（今）'],['dramaOld','好きなドラマ（昔）'],['movie','好きな映画'],['music','好きな音楽'],['color','好きな色'],['food','好きな食べ物'],['animal','好きな動物'],['same','好きな人と推しは同じ？']]],
+['ちょっと聞きたい♡','adult',[
+['fetish','フェチ・好きな部位'],['voice','好きな声'],['gesture','好きな仕草'],['habit','好きな癖'],['weak','弱点'],['weakScene','弱いシチュエーション'],['dokidoki','されるとドキッとすること'],['sexy','色気を感じる瞬間'],['scene','好きなシチュエーション'],['secretLike','人には言いにくい好きなもの'],['secret','ここだけの秘密♡']]],
+['IF...','if',[
+['reborn','生まれ変わるなら？'],['magic','魔法が使えたら？'],['month','一か月休みになったら？'],['money','300万円当たったら？'],['island','無人島に1つ持っていくなら？'],['invisible','1日だけ透明人間になったら？']]],
+['QUESTIONS','',[
+['adult','大人になったと感じる瞬間'],['happyMoment','幸せを感じる瞬間'],['motto','座右の銘・好きな言葉'],['good','自分の好きなところ'],['bad','自分の直したいところ'],['selfAnimal','自分を動物に例えるなら？'],['manual','自分の取扱説明書'],['mistake','最近のやらかし'],['laugh','最近一番笑ったこと'],['memory','最近の良い思い出']]],
+['みったーの○○な人','people',[
+['p1','一番朝が弱そうな人'],['p2','一番寝落ちしそうな人'],['p3','一番酒が強そうな人'],['p4','一番酔うと変わりそうな人'],['p5','一番モテそうな人'],['p6','一番恋愛すると重そうな人'],['p7','一番嫉妬深そうな人'],['p8','一番独占欲が強そうな人'],['p9','一番甘え上手そうな人'],['p10','一番甘やかし上手そうな人'],['p11','一番押しに弱そうな人'],['p12','一番押しが強そうな人'],['p13','一番照れ屋そうな人'],['p14','一番色気がありそうな人'],['p15','一番ギャップがありそうな人'],['p16','一番秘密が多そうな人'],['p17','一番意外な趣味がありそうな人'],['p18','一番一緒に旅行したい人'],['p19','一番一緒に飲みたい人'],['p20','一番デートしてみたい人'],['p21','一番相談しやすそうな人'],['p22','一番頼りになりそうな人'],['p23','一番面白い人'],['p24','一番変人そうな人']]],
+['OTHER','',[
+['theme','好きなテーマ'],['best3','BEST 3'],['gift','もらえるとうれしいプレゼント'],['challenge','チャレンジしてみたいこと'],['want','今ほしいもの'],['place','今一番行きたい場所'],['year','今年やりたいこと'],['someday','いつかやってみたいこと'],['free','Free Space']]]
+];
+function get(id){return (document.getElementById(id)?.value||'').trim()}
+function esc(s){return s.replace(/[&<>"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[x]))}
+function render(){
+ document.getElementById('pvName').textContent=get('name')||'みったー';
+ document.getElementById('pvBirthday').textContent=get('birthday')?get('birthday')+'　♡　PROFILE BOOK':'PROFILE BOOK　♡';
+ let html='';
+ for(const g of groups){
+  let items=g[2].filter(x=>get(x[0]));
+  if(!items.length)continue;
+  html+=`<div class="sec ${g[1]}"><h3>${g[0]}</h3><div class="cards">`;
+  items.forEach(x=>html+=`<div class="item"><div class="q">${x[1]}</div><div class="a">${esc(get(x[0]))}</div></div>`);
+  html+='</div></div>';
+ }
+ if(get('free'))html+=`<div class="sec"><h3>✍ Free Space</h3><div class="item full"><div class="a">${esc(get('free'))}</div></div></div>`;
+ document.getElementById('previewContent').innerHTML=html;
+ localStorage.setItem('mittaProfileData',JSON.stringify(Object.fromEntries([...document.querySelectorAll('input,textarea')].filter(e=>e.type!=='file').map(e=>[e.id,e.value]))));
+}
+document.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',render));
+document.getElementById('photo').addEventListener('change',e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let a=document.getElementById('avatar');a.innerHTML='';let img=document.createElement('img');img.src=r.result;img.className='avatar';a.replaceWith(img);r.onload=null};r.readAsDataURL(f)});
+function save(){render();alert('入力内容をこのブラウザに保存したよ♡')}
+function load(){try{let d=JSON.parse(localStorage.getItem('mittaProfileData')||'{}');Object.entries(d).forEach(([k,v])=>{let e=document.getElementById(k);if(e)e.value=v});render();alert('読み込んだよ♡')}catch(e){alert('保存データがありません')}}
+async function saveImage(){
+ if(typeof html2canvas==='undefined'){alert('画像保存用の読み込みがまだです。少し待ってもう一度押してね。');return}
+ const canvas=await html2canvas(document.getElementById('sheet'),{scale:2,backgroundColor:null,useCORS:true});
+ const a=document.createElement('a');a.download='mitta-profile-book.png';a.href=canvas.toDataURL('image/png');a.click();
+}
+render();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</body></html>
