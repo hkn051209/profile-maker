@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>My Profile Book</title>
+<title>みったー Profile Book</title>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
@@ -14,25 +14,18 @@
   --ink:#514d72;
   --sub:#807aa0;
   --line:#d8d7ed;
-  --lav:#e8e4fa;
-  --blue:#e4f1fb;
-  --pink:#f5e7f4;
   --paper:#fffefe;
 }
 
 body{
   margin:0;
-  font-family:
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
   color:var(--ink);
-  background:
-    linear-gradient(135deg,#f2effa,#edf4f9);
+  background:linear-gradient(135deg,#f2effa,#edf5fa);
 }
 
 header{
-  padding:24px 15px 15px;
+  padding:22px 15px 14px;
   text-align:center;
 }
 
@@ -59,7 +52,7 @@ header p{
   padding-bottom:50px;
 }
 
-/* ===== 入力欄 ===== */
+/* ===== EDITOR ===== */
 
 .editor{
   background:rgba(255,255,255,.96);
@@ -87,22 +80,14 @@ header p{
   border-top:1px dashed #ddd8e7;
 }
 
-.group:first-of-type{
-  margin-top:0;
-  border-top:0;
-}
-
 .group h2{
   margin:0 0 12px;
   font-family:Georgia,serif;
   font-size:17px;
   color:#8a7a9c;
-  letter-spacing:.5px;
 }
 
-.field{
-  margin-bottom:11px;
-}
+.field{margin-bottom:11px}
 
 .field label{
   display:block;
@@ -123,12 +108,14 @@ input,textarea{
 }
 
 textarea{
-  min-height:64px;
+  min-height:62px;
   resize:vertical;
 }
 
-input:focus,textarea:focus{
-  border-color:#aea1c4;
+.birthRow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
 .upload{
@@ -137,14 +124,12 @@ input:focus,textarea:focus{
   border-radius:11px;
   text-align:center;
   background:#a99bc0;
-  color:white;
+  color:#fff;
   font-size:13px;
   margin-bottom:16px;
 }
 
-#imageInput{
-  display:none;
-}
+#imageInput{display:none}
 
 .actions{
   display:grid;
@@ -157,7 +142,6 @@ button{
   padding:13px;
   border-radius:12px;
   font-size:14px;
-  cursor:pointer;
 }
 
 .download{
@@ -170,12 +154,9 @@ button{
   color:#766d80;
 }
 
+/* ===== BOOK ===== */
 
-/* ===== プレビュー ===== */
-
-.previewPanel{
-  min-width:0;
-}
+.previewPanel{min-width:0}
 
 .previewInfo{
   text-align:center;
@@ -187,75 +168,45 @@ button{
 .bookViewport{
   width:100%;
   overflow:auto;
-  padding-bottom:8px;
+  padding-bottom:10px;
 }
 
-/*
-完成PNGは 1400 x 900 相当の比率。
-スマホではCSS transformで縮小するのではなく
-横スクロールで確認可能。
-*/
-
 .book{
-  width:1000px;
-  height:643px;
+  width:1100px;
+  height:760px;
   margin:auto;
   display:grid;
   grid-template-columns:1fr 1fr;
   position:relative;
   overflow:hidden;
-  background:#fff;
+  background:white;
   border-radius:23px;
   box-shadow:0 8px 30px rgba(65,55,90,.16);
 }
 
-/* 中央の折り目 */
-
 .book::after{
   content:"";
   position:absolute;
-  z-index:20;
+  z-index:30;
   left:50%;
-  top:12px;
-  bottom:12px;
+  top:10px;
+  bottom:10px;
   width:2px;
   transform:translateX(-50%);
-  background:
-    linear-gradient(
-      to right,
-      rgba(80,70,100,.05),
-      rgba(255,255,255,.8),
-      rgba(80,70,100,.08)
-    );
-  box-shadow:
-    -5px 0 12px rgba(70,60,90,.05),
-    5px 0 12px rgba(70,60,90,.05);
+  background:linear-gradient(to right,rgba(70,60,90,.07),white,rgba(70,60,90,.08));
+  box-shadow:-5px 0 12px rgba(60,50,80,.05),5px 0 12px rgba(60,50,80,.05);
 }
 
 .page{
   position:relative;
   overflow:hidden;
-  padding:27px 31px;
+  padding:27px 34px;
   background:
-    radial-gradient(circle at 12% 15%,rgba(187,213,247,.55),transparent 23%),
-    radial-gradient(circle at 73% 12%,rgba(213,200,246,.52),transparent 25%),
-    radial-gradient(circle at 30% 76%,rgba(222,237,250,.55),transparent 25%),
-    radial-gradient(circle at 87% 73%,rgba(225,211,245,.50),transparent 26%),
+    radial-gradient(circle at 12% 12%,rgba(187,213,247,.55),transparent 23%),
+    radial-gradient(circle at 78% 12%,rgba(215,201,246,.50),transparent 25%),
+    radial-gradient(circle at 30% 75%,rgba(221,238,249,.52),transparent 25%),
+    radial-gradient(circle at 88% 75%,rgba(231,214,244,.45),transparent 27%),
     linear-gradient(135deg,#fff,#fafbff);
-}
-
-/* 水彩っぽいぼかし */
-
-.page::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:.55;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 20% 5%,#e4e2ff 0 7%,transparent 18%),
-    radial-gradient(ellipse at 80% 22%,#dceefc 0 8%,transparent 20%),
-    radial-gradient(ellipse at 30% 92%,#eee3fb 0 8%,transparent 21%);
 }
 
 .page>*{
@@ -263,88 +214,39 @@ button{
   z-index:2;
 }
 
-/* 穴 */
-
-.holes{
-  position:absolute;
-  top:30px;
-  bottom:30px;
-  width:17px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
-  z-index:10;
-}
-
-.leftPage .holes{
-  left:7px;
-}
-
-.rightPage .holes{
-  right:7px;
-}
-
-.hole{
-  width:12px;
-  height:12px;
-  background:#fff;
-  border-radius:50%;
-  box-shadow:inset 0 0 2px rgba(80,70,100,.18);
-}
-
-/* 見出し */
-
 .heading{
-  font-family:
-    "Comic Sans MS",
-    "Segoe Print",
-    cursive;
+  font-family:"Comic Sans MS","Segoe Print",cursive;
   font-weight:400;
-  color:#76689b;
-  font-size:27px;
-  margin:0 0 11px;
+  color:#75679a;
+  font-size:26px;
+  margin:0 0 10px;
   line-height:1;
 }
 
 .heading small{
   font-family:"Yu Gothic",sans-serif;
   font-size:9px;
-  color:#9b94aa;
-  margin-left:8px;
+  color:#9d96aa;
+  margin-left:7px;
 }
 
-.ruleTitle{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:15px;
-}
-
-.ruleTitle::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:linear-gradient(to right,#cbc5e3,transparent);
-}
-
-/* 左上 */
+/* PROFILE */
 
 .profileTop{
   display:grid;
-  grid-template-columns:102px 1fr;
-  gap:13px;
-  margin-bottom:9px;
+  grid-template-columns:105px 1fr;
+  gap:14px;
 }
 
 .avatar{
-  height:119px;
-  background:rgba(255,255,255,.68);
+  height:125px;
+  border-radius:14px;
+  background:rgba(255,255,255,.7);
   border:2px solid rgba(188,184,218,.65);
-  border-radius:15px;
   overflow:hidden;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   color:#aaa5b6;
   font-size:10px;
 }
@@ -356,35 +258,70 @@ button{
   display:none;
 }
 
-.nameLine{
-  font-size:18px;
-  font-weight:600;
-  min-height:27px;
+.name{
+  min-height:28px;
   border-bottom:2px solid rgba(194,188,223,.7);
-  padding:1px 4px 4px;
+  font-size:19px;
+  font-weight:600;
+  padding:2px 4px 4px;
   margin-bottom:7px;
 }
 
-.profileLines{
+.profileSentence{
+  background:rgba(255,255,255,.64);
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:10px;
+  line-height:2;
+}
+
+.blank{
+  display:inline-block;
+  min-width:43px;
+  padding:0 3px;
+  text-align:center;
+  border-bottom:1px solid #aaa1c0;
+  font-weight:600;
+  color:#5d5573;
+}
+
+.longBlank{min-width:90px}
+
+/* COMMON */
+
+.section{margin-top:15px}
+
+.titleRow{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.titleRow::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:linear-gradient(to right,#cbc5e3,transparent);
+}
+
+.grid2{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:5px;
+  gap:6px;
 }
 
-.miniAnswer,
-.answerBox{
-  background:rgba(255,255,255,.67);
-  border:1px solid rgba(204,201,226,.75);
-  border-radius:5px;
-  padding:5px 7px;
-  overflow:hidden;
+.box{
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(202,198,224,.75);
+  border-radius:7px;
+  padding:6px 8px;
+  min-height:40px;
 }
 
-.miniAnswer{
-  min-height:30px;
-}
+.box.wide{grid-column:1/-1}
 
-.label{
+.box small{
   display:block;
   font-size:7px;
   color:#8e879b;
@@ -398,429 +335,268 @@ button{
   word-break:break-word;
 }
 
-/* 性格 */
+/* FAVORITES */
 
-.personality{
-  margin-top:7px;
-}
-
-.personality .answerBox{
-  min-height:42px;
-}
-
-/* Favorites */
-
-.favoriteGrid{
+.favorites{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:5px;
 }
 
-.favoriteGrid .answerBox{
-  min-height:40px;
+/* LOVE */
+
+.love .box{
+  background:rgba(255,246,251,.72);
 }
 
-/* 右 */
+/* OSHI */
 
-.loveGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:6px;
+.oshi{
+  padding:8px;
+  border-radius:13px;
+  background:rgba(244,239,255,.62);
 }
 
-.loveGrid .answerBox{
-  min-height:48px;
-}
-
-.loveGrid .wide{
-  grid-column:1/-1;
-}
-
-.loveArea .answerBox{
-  background:rgba(255,247,252,.70);
-}
-
-.moreGrid{
+.oshiGrid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:6px;
+  gap:5px;
 }
 
-.moreGrid .answerBox{
-  min-height:43px;
+/* MITTER */
+
+.mitter{
+  background:rgba(236,247,252,.65);
+  border:1px dashed rgba(148,177,200,.55);
+  border-radius:14px;
+  padding:9px;
 }
 
-.freeSpace{
-  margin-top:13px;
-  min-height:104px;
-  padding:10px;
-  border-radius:13px;
-  border:1px solid rgba(201,197,222,.75);
-  background:rgba(255,255,255,.65);
+.mitterTitle{
+  font-family:"Comic Sans MS","Segoe Print",cursive;
+  font-size:19px;
+  color:#65859e;
+  margin-bottom:6px;
 }
 
-.freeSpace .answer{
-  font-size:10px;
+.mitterGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
 }
 
-/* 小さな装飾 */
+.mitterItem{
+  min-height:37px;
+  padding:5px 7px;
+  background:rgba(255,255,255,.7);
+  border-radius:7px;
+}
 
-.doodle{
+.mitterItem small{
+  display:block;
+  font-size:7px;
+  color:#7c8995;
+}
+
+.free{
+  min-height:60px;
+  background:rgba(255,255,255,.64);
+  border:1px solid rgba(200,197,221,.7);
+  border-radius:12px;
+  padding:8px;
+}
+
+/* DECOR */
+
+.decor{
   position:absolute;
-  opacity:.22;
-  font-family:Georgia,serif;
   pointer-events:none;
+  opacity:.20;
+  font-family:Georgia,serif;
 }
 
-.d1{
-  right:28px;
-  top:18px;
-  font-size:55px;
-  color:#9cb9de;
-}
-
-.d2{
-  left:35px;
-  bottom:15px;
-  font-size:45px;
-  color:#b8a1d4;
-}
-
-.d3{
+.heart{
   right:25px;
-  bottom:18px;
-  font-size:52px;
-  color:#aacce1;
+  top:18px;
+  font-size:50px;
+  color:#ae91c5;
 }
 
+.star{
+  right:30px;
+  bottom:18px;
+  font-size:48px;
+  color:#8fb8d0;
+}
 
-/* ===== スマホ ===== */
+.flower{
+  left:28px;
+  bottom:12px;
+  font-size:42px;
+  color:#aa9bc8;
+}
 
 @media(max-width:850px){
-
   .app{
     display:flex;
     flex-direction:column;
   }
-
-  .previewPanel{
-    order:-1;
-  }
-
-  .bookViewport{
-    border-radius:18px;
-  }
-
-  .book{
-    margin:0;
-  }
+  .previewPanel{order:-1}
+  .book{margin:0}
 }
-
-@media(max-width:600px){
-
-  header{
-    padding-top:17px;
-  }
-
-  header h1{
-    font-size:25px;
-  }
-
-  .editor{
-    padding:16px;
-  }
-}
-
-/* PNG撮影時 */
 
 .captureMode{
   box-shadow:none!important;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <header>
-  <h1>My Profile Book</h1>
-  <p>プロフィール帳をつくろう</p>
+<h1>みったー Profile Book</h1>
+<p>みんなのこと、もっと知りたい。</p>
 </header>
-
 
 <div class="app">
 
-<!-- =====================
-入力フォーム
-===================== -->
+<!-- EDITOR -->
 
 <div class="editor">
 
 <div class="editorTitle">プロフィールを書く</div>
-<div class="editorNote">
-入力内容はこの端末のブラウザに自動保存されます。
-</div>
+<div class="editorNote">入力した内容は自動保存されます。</div>
 
-<label class="upload" for="imageInput">
-📷 写真・イラストを入れる
-</label>
+<label class="upload" for="imageInput">📷 写真・イラストを入れる</label>
 <input type="file" id="imageInput" accept="image/*">
 
-
 <div class="group">
-
 <h2>MY PROFILE</h2>
 
-<div class="field">
-<label>名前</label>
-<input id="name">
-</div>
+<div class="field"><label>名前</label><input id="name"></div>
 
 <div class="field">
-<label>誕生日</label>
-<input id="birthday">
+<label>誕生日（西暦はいりません）</label>
+<div class="birthRow">
+<input id="birthMonth" inputmode="numeric" placeholder="月">
+<input id="birthDay" inputmode="numeric" placeholder="日">
+</div>
 </div>
 
-<div class="field">
-<label>干支</label>
-<input id="eto">
+<div class="field"><label>干支</label><input id="eto"></div>
+<div class="field"><label>血液型</label><input id="blood"></div>
+<div class="field"><label>MBTI</label><input id="mbti"></div>
+<div class="field"><label>なんて呼ばれてる？</label><input id="nickname"></div>
+<div class="field"><label>自分ではどんな性格だと思う？</label><textarea id="personality"></textarea></div>
+<div class="field"><label>子供の頃の夢</label><input id="childDream"></div>
 </div>
-
-<div class="field">
-<label>血液型</label>
-<input id="blood">
-</div>
-
-<div class="field">
-<label>身長</label>
-<input id="height">
-</div>
-
-<div class="field">
-<label>MBTI</label>
-<input id="mbti" placeholder="例：INFP">
-</div>
-
-<div class="field">
-<label>性格</label>
-<textarea id="personality"></textarea>
-</div>
-
-</div>
-
 
 <div class="group">
-
 <h2>MY FAVORITES</h2>
 
-<div class="field">
-<label>好きな色</label>
-<input id="color">
+<div class="field"><label>好きな色</label><input id="color"></div>
+<div class="field"><label>好きな食べ物</label><input id="food"></div>
+<div class="field"><label>好きな動物</label><input id="animal"></div>
+<div class="field"><label>好きな音楽</label><input id="music"></div>
+<div class="field"><label>好きな漫画</label><input id="manga"></div>
+<div class="field"><label>好きなドラマ【今】</label><input id="dramaNow"></div>
+<div class="field"><label>好きなドラマ【昔】</label><input id="dramaOld"></div>
 </div>
-
-<div class="field">
-<label>好きな食べ物</label>
-<input id="food">
-</div>
-
-<div class="field">
-<label>好きな動物</label>
-<input id="animal">
-</div>
-
-<div class="field">
-<label>好きな音楽</label>
-<input id="music">
-</div>
-
-<div class="field">
-<label>好きな漫画</label>
-<input id="manga">
-</div>
-
-<div class="field">
-<label>好きなドラマ【今】</label>
-<input id="dramaNow">
-</div>
-
-<div class="field">
-<label>好きなドラマ【昔】</label>
-<input id="dramaOld">
-</div>
-
-</div>
-
 
 <div class="group">
-
 <h2>LOVE & SECRET ♡</h2>
 
-<div class="field">
-<label>好きな人</label>
-<input id="love">
+<div class="field"><label>好きな人</label><input id="love"></div>
+<div class="field"><label>その人のどこが好き？</label><textarea id="loveReason"></textarea></div>
+<div class="field"><label>好みのタイプ</label><textarea id="type"></textarea></div>
+<div class="field"><label>フェチ部位</label><input id="fetish"></div>
+<div class="field"><label>弱点</label><input id="weakness"></div>
+<div class="field"><label>弱いシチュ</label><textarea id="situation"></textarea></div>
+<div class="field"><label>あなたは受け攻め？</label><input id="role" placeholder="自由記入"></div>
+<div class="field"><label>好きな癖</label><input id="habit"></div>
 </div>
-
-<div class="field">
-<label>好みのタイプ</label>
-<textarea id="type"></textarea>
-</div>
-
-<div class="field">
-<label>フェチ部位</label>
-<input id="fetish">
-</div>
-
-<div class="field">
-<label>弱点</label>
-<input id="weakness">
-</div>
-
-<div class="field">
-<label>弱いシチュ</label>
-<textarea id="situation"></textarea>
-</div>
-
-<div class="field">
-<label>あなたは受け攻め？</label>
-<input id="role" placeholder="自由記入">
-</div>
-
-<div class="field">
-<label>好きな癖</label>
-<textarea id="habit"></textarea>
-</div>
-
-</div>
-
 
 <div class="group">
+<h2>MY OSHI ♡</h2>
 
-<h2>MORE ABOUT ME</h2>
-
-<div class="field">
-<label>最近ハマっているもの</label>
-<input id="boom">
+<div class="field"><label>あなたの推しは？</label><input id="oshi"></div>
+<div class="field"><label>推しのどこが好き？</label><textarea id="oshiReason"></textarea></div>
+<div class="field"><label>推しを一言で表すなら？</label><input id="oshiWord"></div>
+<div class="field"><label>推しに会えたら何したい？</label><textarea id="oshiMeet"></textarea></div>
 </div>
 
-<div class="field">
-<label>休日の過ごし方</label>
-<textarea id="holiday"></textarea>
+<div class="group">
+<h2>みったーで当てはめて！</h2>
+
+<div class="field"><label>お酒に一番強そう</label><input id="strongDrink"></div>
+<div class="field"><label>お酒に一番弱そう</label><input id="weakDrink"></div>
+<div class="field"><label>無人島でも生き残りそう</label><input id="island"></div>
+<div class="field"><label>実は一番モテそう</label><input id="popular"></div>
+<div class="field"><label>一緒に旅行するなら</label><input id="travel"></div>
 </div>
 
-<div class="field">
-<label>自分を一言で表すと？</label>
-<input id="oneword">
+<div class="group">
+<h2>FREE SPACE</h2>
+<div class="field"><label>最近ハマっているもの</label><input id="boom"></div>
+<div class="field"><label>自由に一言！</label><textarea id="message"></textarea></div>
 </div>
-
-<div class="field">
-<label>自由に一言！</label>
-<textarea id="message"></textarea>
-</div>
-
-</div>
-
 
 <div class="actions">
-
-<button class="download" onclick="downloadProfile()">
-📷 見開きをPNGで保存
-</button>
-
-<button class="clear" onclick="clearProfile()">
-入力をすべて消す
-</button>
-
+<button class="download" onclick="downloadProfile()">📷 見開きをPNGで保存</button>
+<button class="clear" onclick="clearProfile()">入力をすべて消す</button>
 </div>
 
 </div>
 
 
-
-<!-- =====================
-完成プレビュー
-===================== -->
+<!-- PREVIEW -->
 
 <div class="previewPanel">
 
-<p class="previewInfo">
-← 横に動かすと見開き全体を確認できます →
-</p>
+<p class="previewInfo">← 横にスワイプすると見開き全体を確認できます →</p>
 
 <div class="bookViewport">
 
 <div class="book" id="profileBook">
 
+<!-- LEFT -->
 
-<!-- LEFT PAGE -->
+<section class="page">
 
-<section class="page leftPage">
+<div class="decor heart">♡</div>
+<div class="decor flower">✿</div>
 
-<div class="holes">
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-</div>
-
-<div class="doodle d1">♡</div>
-<div class="doodle d2">✿</div>
-
-
-<h1 class="heading">
-My profile
-<small>わたし・ぼくのこと</small>
-</h1>
-
+<h1 class="heading">My profile <small>わたし・ぼくのこと</small></h1>
 
 <div class="profileTop">
 
 <div class="avatar">
-
 <img id="previewImage">
-
-<span id="photoText">
-PHOTO
-</span>
-
+<span id="photoText">PHOTO</span>
 </div>
-
 
 <div>
 
-<div class="nameLine answer" id="p-name">
-なまえ
-</div>
+<div class="name answer" id="p-name">なまえ</div>
 
-<div class="profileLines">
+<div class="profileSentence">
 
-<div class="miniAnswer">
-<span class="label">誕生日</span>
-<div class="answer" id="p-birthday">---</div>
-</div>
+誕生日は
+<span class="blank" id="p-birthMonth">--</span> 月
+<span class="blank" id="p-birthDay">--</span> 日 ♪<br>
 
-<div class="miniAnswer">
-<span class="label">干支</span>
-<div class="answer" id="p-eto">---</div>
-</div>
+干支は
+<span class="blank" id="p-eto">---</span>、
 
-<div class="miniAnswer">
-<span class="label">血液型</span>
-<div class="answer" id="p-blood">---</div>
-</div>
+血液型は
+<span class="blank" id="p-blood">---</span> 型。<br>
 
-<div class="miniAnswer">
-<span class="label">身長</span>
-<div class="answer" id="p-height">---</div>
-</div>
+MBTIは
+<span class="blank" id="p-mbti">---</span>！<br>
 
-<div class="miniAnswer">
-<span class="label">MBTI</span>
-<div class="answer" id="p-mbti">---</div>
-</div>
+みんなからは
+<span class="blank longBlank" id="p-nickname">---</span>
+って呼ばれてるよ。
 
 </div>
 
@@ -828,527 +604,67 @@ PHOTO
 
 </div>
 
+<div class="section">
 
-<div class="personality">
+<div class="box wide">
+<small>自分ではこんな性格だと思う！</small>
+<div class="answer" id="p-personality">---</div>
+</div>
 
-<div class="answerBox">
-
-<span class="label">
-自分ではどんな性格だと思う？
-</span>
-
-<div class="answer" id="p-personality">
----
+<div class="box wide" style="margin-top:5px">
+<small>子供の頃の夢は……</small>
+<div class="answer" id="p-childDream">---</div>
 </div>
 
 </div>
 
+
+<div class="section">
+
+<div class="titleRow">
+<h2 class="heading">My favorites</h2>
 </div>
 
+<div class="favorites">
 
-
-<div class="ruleTitle">
-
-<h2 class="heading">
-My favorites
-</h2>
-
-</div>
-
-
-<div class="favoriteGrid">
-
-<div class="answerBox">
-<span class="label">好きな色</span>
-<div class="answer" id="p-color">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きな食べ物</span>
-<div class="answer" id="p-food">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きな動物</span>
-<div class="answer" id="p-animal">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きな音楽</span>
-<div class="answer" id="p-music">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きな漫画</span>
-<div class="answer" id="p-manga">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きなドラマ・今</span>
-<div class="answer" id="p-dramaNow">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きなドラマ・昔</span>
-<div class="answer" id="p-dramaOld">---</div>
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- RIGHT PAGE -->
-
-<section class="page rightPage">
-
-<div class="holes">
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-<div class="hole"></div>
-</div>
-
-<div class="doodle d3">☆</div>
-
-
-<div class="loveArea">
-
-<h1 class="heading">
-Love & Secret ♡
-<small>ちょっとだけ秘密のこと</small>
-</h1>
-
-
-<div class="loveGrid">
-
-<div class="answerBox">
-<span class="label">好きな人</span>
-<div class="answer" id="p-love">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好みのタイプ</span>
-<div class="answer" id="p-type">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">フェチ部位</span>
-<div class="answer" id="p-fetish">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">弱点</span>
-<div class="answer" id="p-weakness">---</div>
-</div>
-
-<div class="answerBox wide">
-<span class="label">弱いシチュ</span>
-<div class="answer" id="p-situation">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">あなたは受け攻め？</span>
-<div class="answer" id="p-role">---</div>
-</div>
-
-<div class="answerBox">
-<span class="label">好きな癖</span>
-<div class="answer" id="p-habit">---</div>
-</div>
+<div class="box"><small>好きな色</small><div class="answer" id="p-color">---</div></div>
+<div class="box"><small>好きな食べ物</small><div class="answer" id="p-food">---</div></div>
+<div class="box"><small>好きな動物</small><div class="answer" id="p-animal">---</div></div>
+<div class="box"><small>好きな音楽</small><div class="answer" id="p-music">---</div></div>
+<div class="box"><small>好きな漫画</small><div class="answer" id="p-manga">---</div></div>
+<div class="box"><small>好きなドラマ・今</small><div class="answer" id="p-dramaNow">---</div></div>
+<div class="box"><small>好きなドラマ・昔</small><div class="answer" id="p-dramaOld">---</div></div>
 
 </div>
 
 </div>
 
 
+<div class="section mitter">
 
-<div class="ruleTitle">
+<div class="mitterTitle">みったーで当てはめて！</div>
 
-<h2 class="heading">
-More about me
-</h2>
+<div class="mitterGrid">
 
+<div class="mitterItem">
+<small>🍶 お酒に一番強そう</small>
+<div class="answer" id="p-strongDrink">---</div>
 </div>
 
-
-<div class="moreGrid">
-
-<div class="answerBox">
-<span class="label">最近ハマっているもの</span>
-<div class="answer" id="p-boom">---</div>
+<div class="mitterItem">
+<small>🥴 お酒に一番弱そう</small>
+<div class="answer" id="p-weakDrink">---</div>
 </div>
 
-<div class="answerBox">
-<span class="label">自分を一言で表すと？</span>
-<div class="answer" id="p-oneword">---</div>
+<div class="mitterItem">
+<small>🏝 無人島でも生き残りそう</small>
+<div class="answer" id="p-island">---</div>
 </div>
 
-<div class="answerBox" style="grid-column:1/-1">
-<span class="label">休日の過ごし方</span>
-<div class="answer" id="p-holiday">---</div>
+<div class="mitterItem">
+<small>💘 実は一番モテそう</small>
+<div class="answer" id="p-popular">---</div>
 </div>
 
-</div>
-
-
-
-<div class="ruleTitle">
-
-<h2 class="heading">
-Free Space
-</h2>
-
-</div>
-
-
-<div class="freeSpace">
-
-<span class="label">
-最後に自由に一言！
-</span>
-
-<div class="answer" id="p-message">
----
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<script>
-
-/* =========================
-   項目
-========================= */
-
-const fields=[
-"name",
-"birthday",
-"eto",
-"blood",
-"height",
-"mbti",
-"personality",
-
-"color",
-"food",
-"animal",
-"music",
-"manga",
-"dramaNow",
-"dramaOld",
-
-"love",
-"type",
-"fetish",
-"weakness",
-"situation",
-"role",
-"habit",
-
-"boom",
-"holiday",
-"oneword",
-"message"
-];
-
-
-/* =========================
-   表示更新
-========================= */
-
-function updateField(id){
-
-  const input=
-    document.getElementById(id);
-
-  const output=
-    document.getElementById("p-"+id);
-
-  if(!input || !output)return;
-
-  let empty="---";
-
-  if(id==="name"){
-    empty="なまえ";
-  }
-
-  output.textContent=
-    input.value.trim() || empty;
-}
-
-
-/* =========================
-   自動保存
-========================= */
-
-fields.forEach(id=>{
-
-  const input=
-    document.getElementById(id);
-
-  const saved=
-    localStorage.getItem(
-      "profileBook_"+id
-    );
-
-  if(saved!==null){
-    input.value=saved;
-  }
-
-  updateField(id);
-
-  input.addEventListener(
-    "input",
-    ()=>{
-
-      updateField(id);
-
-      localStorage.setItem(
-        "profileBook_"+id,
-        input.value
-      );
-
-    }
-  );
-
-});
-
-
-/* =========================
-   画像
-========================= */
-
-const imageInput=
-  document.getElementById(
-    "imageInput"
-  );
-
-imageInput.addEventListener(
-  "change",
-  event=>{
-
-    const file=
-      event.target.files[0];
-
-    if(!file)return;
-
-    const reader=
-      new FileReader();
-
-    reader.onload=e=>{
-
-      const img=
-        document.getElementById(
-          "previewImage"
-        );
-
-      img.src=
-        e.target.result;
-
-      img.style.display=
-        "block";
-
-      document
-        .getElementById(
-          "photoText"
-        )
-        .style.display=
-        "none";
-
-      /*
-      画像が大きすぎる場合は
-      localStorageに保存できないことがあるため
-      保存失敗でもサイト自体は動く
-      */
-
-      try{
-
-        localStorage.setItem(
-          "profileBook_image",
-          e.target.result
-        );
-
-      }catch(error){}
-
-    };
-
-    reader.readAsDataURL(file);
-
-  }
-);
-
-
-/* 保存画像を復元 */
-
-const savedImage=
-  localStorage.getItem(
-    "profileBook_image"
-  );
-
-if(savedImage){
-
-  const img=
-    document.getElementById(
-      "previewImage"
-    );
-
-  img.src=savedImage;
-
-  img.style.display="block";
-
-  document
-    .getElementById(
-      "photoText"
-    )
-    .style.display="none";
-
-}
-
-
-/* =========================
-   PNG保存
-========================= */
-
-async function downloadProfile(){
-
-  const book=
-    document.getElementById(
-      "profileBook"
-    );
-
-  const button=
-    document.querySelector(
-      ".download"
-    );
-
-  const oldText=
-    button.textContent;
-
-  button.disabled=true;
-  button.textContent=
-    "画像を作成しています…";
-
-  book.classList.add(
-    "captureMode"
-  );
-
-  try{
-
-    const canvas=
-      await html2canvas(
-        book,
-        {
-          scale:2,
-          backgroundColor:"#ffffff",
-          useCORS:true,
-          logging:false
-        }
-      );
-
-    const dataURL=
-      canvas.toDataURL(
-        "image/png"
-      );
-
-    const link=
-      document.createElement("a");
-
-    link.download=
-      "my-profile-book.png";
-
-    link.href=dataURL;
-
-    document.body
-      .appendChild(link);
-
-    link.click();
-
-    link.remove();
-
-  }catch(error){
-
-    alert(
-      "画像の保存に失敗しました。ブラウザをChromeで開いて、もう一度試してみてください。"
-    );
-
-  }
-
-  book.classList.remove(
-    "captureMode"
-  );
-
-  button.disabled=false;
-  button.textContent=oldText;
-
-}
-
-
-/* =========================
-   全消去
-========================= */
-
-function clearProfile(){
-
-  const ok=
-    confirm(
-      "入力した内容を全部消しますか？"
-    );
-
-  if(!ok)return;
-
-  fields.forEach(id=>{
-
-    localStorage.removeItem(
-      "profileBook_"+id
-    );
-
-    document
-      .getElementById(id)
-      .value="";
-
-    updateField(id);
-
-  });
-
-
-  localStorage.removeItem(
-    "profileBook_image"
-  );
-
-  const img=
-    document.getElementById(
-      "previewImage"
-    );
-
-  img.removeAttribute("src");
-
-  img.style.display="none";
-
-  document
-    .getElementById(
-      "photoText"
-    )
-    .style.display="block";
-
-}
-
-</script>
-
-</body>
-</html>
+<div class="mitterItem">
+<small>✈ 一
