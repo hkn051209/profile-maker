@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みったーぷろふ ♡</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Hachi+Maru+Pop&family=Kaisei+Decol:wght@400;700&family=Klee+One:wght@400;600&family=Potta+One&family=Shippori+Mincho:wght@400;600&family=Yomogi&family=Zen+Kurenaido&family=Yuji+Boku&family=Yuji+Mai&family=Yuji+Syuku&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box} :root{--purple:#7253a2;--pink:#ed9fc7;--blue:#8ebce8;--ink:#66527c}
+body{margin:0;font-family:"Klee One","Yu Gothic",sans-serif;color:var(--ink);background:linear-gradient(135deg,#f9e7f3,#eef7ff)}
+header{text-align:center;padding:17px 10px 12px}header h1{margin:0;font:700 28px "Hachi Maru Pop",cursive;color:#7253a2}header p{margin:5px 0;font-size:11px;color:#998da8}
+.app{width:min(1340px,97%);margin:auto;display:grid;grid-template-columns:350px 1fr;gap:18px;padding-bottom:45px}
+.editor{background:#fffdfde8;border-radius:22px;padding:18px;box-shadow:0 8px 25px #6450781c}.editor h2{margin:0 0 4px;font:20px "Hachi Maru Pop",cursive}.note{font-size:11px;color:#9b90a7}
+.group{margin-top:17px;padding-top:12px;border-top:1px dashed #d8cae6}.group h3{margin:0 0 9px;font:16px "Hachi Maru Pop",cursive;color:#8061a2}.field{margin:9px 0}.field label{display:block;font-size:12px;margin-bottom:4px}
+input,textarea,select{width:100%;border:1px solid #ded1e8;border-radius:11px;padding:9px;background:#fffafd;font:14px "Klee One",sans-serif;color:#564a63}textarea{min-height:55px;resize:vertical}.birth{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.photoBtn,button{display:block;width:100%;border:0;border-radius:12px;padding:11px;margin-top:8px;font:13px "Klee One",sans-serif}.photoBtn{text-align:center;background:linear-gradient(135deg,#ef9fc8,#bba7e7 48%,#8fc9eb);color:#fff;font-weight:600;box-shadow:0 5px 14px #b69acb33}.photoBtn:active{transform:translateY(1px)}#imageInput{display:none}.save{background:#8066a7;color:#fff}.clear{background:#efe9f4;color:#72647d}
+.photo-upload{position:relative;margin:10px 0 15px;padding:11px;border:1.5px dashed #d8b7dc;border-radius:18px;background:linear-gradient(135deg,#fff7fb,#f7f2ff 52%,#f1faff);overflow:hidden}.photo-upload:before,.photo-upload:after{position:absolute;pointer-events:none;opacity:.42;font-family:"Hachi Maru Pop";color:#e69bc3}.photo-upload:before{content:"♡ ✦";right:12px;top:7px;font-size:18px;transform:rotate(8deg)}.photo-upload:after{content:"✿";left:10px;bottom:8px;font-size:15px;color:#8fc6e6}.ratio-guide{display:flex;align-items:center;gap:10px;margin:8px 4px 1px}.ratio-icon{width:27px;height:36px;flex:none;border:2px solid #b999d0;border-radius:6px;background:linear-gradient(145deg,#ffe8f2,#eef7ff);box-shadow:inset 0 0 0 3px #fff9;position:relative}.ratio-icon:after{content:"♡";position:absolute;inset:0;display:grid;place-items:center;font:12px "Hachi Maru Pop";color:#df8fb8}.ratio-copy{font-size:10px;line-height:1.55;color:#85758f}.ratio-copy b{color:#74539d;font-size:11px}.ratio-chip{display:inline-block;margin-left:4px;padding:1px 6px;border-radius:999px;background:#ffe5f0;color:#b6658f;font-size:9px}.editor{position:relative;overflow:hidden}.editor:before{content:"♡  ✦  ♡";position:absolute;right:-7px;top:4px;font:19px "Hachi Maru Pop";color:#edb3d1;opacity:.45;transform:rotate(10deg);pointer-events:none}
+.preview{min-width:0}.tip{text-align:center;font-size:10px;color:#95899f}.scroll{overflow:auto;padding-bottom:8px;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.page{scroll-snap-align:start}
+.book{position:relative;width:1000px;height:643px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:15px;background:#fff;box-shadow:0 9px 32px #55406d35}
+.book:after{content:"";position:absolute;z-index:20;left:50%;top:0;bottom:0;width:12px;transform:translateX(-50%);background:linear-gradient(90deg,#6551791c,#fff9,#65517918)}
+.page{position:relative;overflow:hidden;padding:22px 29px 20px;background:
+radial-gradient(circle at 5% 10%,#cfdcf177 0,transparent 24%),radial-gradient(circle at 91% 9%,#f0cbdc66 0,transparent 25%),radial-gradient(circle at 17% 91%,#d6e8f477 0,transparent 25%),radial-gradient(circle at 88% 86%,#ead8ef88 0,transparent 26%),linear-gradient(135deg,#fffefb,#fbf9ff)}
+.page:before{content:"";position:absolute;inset:0;opacity:.22;background-image:repeating-linear-gradient(0deg,transparent 0 17px,#b9a7c51c 18px),radial-gradient(#8e7aa522 .6px,transparent .7px);background-size:auto,5px 5px}
+.inner{position:relative;z-index:3}.hole{position:absolute;left:7px;width:12px;height:12px;border-radius:50%;background:#e1dce8;border:1px solid #b9acc8;box-shadow:inset 1px 1px 2px #88779866}.right .hole{left:auto;right:7px}
+.title{display:flex;align-items:flex-end;gap:10px;margin:0 0 8px;font:700 25px "Hachi Maru Pop",cursive;color:#69499a;border-bottom:2px solid #e6b8d3;padding-bottom:3px}.title small{font:10px "Yomogi",cursive;color:#846d93;margin-bottom:4px}
+.tape{position:absolute;width:50px;height:18px;opacity:.52;background:repeating-linear-gradient(45deg,#fff7 0 5px,transparent 5px 10px),#efaac9;transform:rotate(-12deg);z-index:4}.blue{background:repeating-linear-gradient(45deg,#fff7 0 5px,transparent 5px 10px),#9fc9ea}.purple{background:repeating-linear-gradient(45deg,#fff7 0 5px,transparent 5px 10px),#c4afe1}
+.doodle{position:absolute;z-index:2;font:28px "Hachi Maru Pop";opacity:.46}.pink{color:#eb91bb}.sky{color:#77b4e3}.lav{color:#a18acb}
+.profile{display:grid;grid-template-columns:118px 1fr;gap:13px}.photo{position:relative;height:151px;border:2px dashed #9d85bf;border-radius:16px;background:linear-gradient(145deg,#e9edff,#f7eefe);display:flex;align-items:center;justify-content:center;transform:rotate(-1.2deg);overflow:hidden}.photo img{display:none;width:100%;height:100%;object-fit:cover}.photo span{font:16px "Yomogi";color:#8975a6}.photo:before{content:"♕";position:absolute;top:25px;color:#9e8ac0;font-size:22px}
+.photo.has-image:before{display:none!important}
+.photo.has-image #photoPlaceholder{display:none!important}
+.intro{font-size:10px}.name{font:600 18px var(--answer-font,"Klee One");border-bottom:2px solid #9c86bd;padding:3px 4px;margin:2px 0 4px}.sentence{font-size:10px;line-height:2.12}.blank{display:inline-block;min-width:48px;border-bottom:1px solid #9f91ae;text-align:center;font-family:var(--answer-font,"Klee One");font-weight:600}.long{min-width:108px}
+.cloud{margin-top:7px;padding:7px 10px;border:1px dashed #c8b8d8;border-radius:22px;background:#fff9;font-size:10px;line-height:1.8}
+.sec{display:flex;align-items:center;gap:8px;margin:9px 0 5px;font:700 20px "Hachi Maru Pop";color:#704c9d}.sec:after{content:"";height:2px;flex:1;background:linear-gradient(90deg,#e8b5d2,#a8cbea,transparent)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:5px 7px}.card{min-height:39px;padding:5px 8px;border:1.5px solid #cfc0df;border-radius:12px;background:#fff9;position:relative}.card:nth-child(2n){border-color:#efc3d7}.wide{grid-column:1/-1}.label{display:block;font:8px "Klee One";color:#887796}.ans{font:600 10px var(--answer-font,"Klee One");white-space:pre-wrap;word-break:break-word;line-height:1.35}
+.oshi{padding:7px;border:1px dashed #ad99ca;border-radius:18px;background:#fff8}.game{padding:7px 165px 7px 7px;min-height:132px;border-radius:18px;background:#fff8;border:1px dashed #a9bcd4}.freegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.free{min-height:76px;padding:8px;border:1px dashed #c1acd4;border-radius:18px;background:#fff8}
+.chars{position:absolute;z-index:8;right:-28px;bottom:-12px;width:205px;max-height:158px;object-fit:contain;object-position:right bottom;filter:drop-shadow(0 3px 2px #5e4d7025)}
+.page{box-shadow:inset 0 0 24px #8f77aa12}
+.card:after{content:"";position:absolute;left:10px;right:10px;bottom:6px;border-bottom:1px dotted #c9b8d7;opacity:.42}
+.card .ans{position:relative;z-index:2}
+.sticker{position:absolute;z-index:2;opacity:.48;font-family:"Hachi Maru Pop",cursive;pointer-events:none}
+.s1{left:18px;top:430px;font-size:24px;color:#ef9fc5;transform:rotate(-12deg)}
+.s2{right:22px;top:365px;font-size:20px;color:#79b5e2;transform:rotate(10deg)}
+.s3{left:32px;bottom:18px;font-size:25px;color:#a993cf}
+.s4{right:22px;bottom:172px;font-size:23px;color:#ee9cbe}
+.answerText,.ans,.blank,.name{font-family:var(--answer-font,"Klee One"),"Yu Gothic",sans-serif!important}
+.answerText{font-family:var(--answer-font,"Klee One")!important}
+@media(max-width:850px){.app{display:flex;flex-direction:column;padding:0 9px 40px}.preview{order:-1}.book{margin:0}}
+
+/* ===== v9 : もっと可愛い平成プロフィール帳 ===== */
+:root{
+ --purple:#7952ad; --pink:#f09bc6; --blue:#82bde9;
+ --yellow:#f4d77e; --mint:#a9dccc; --ink:#655277;
+}
+.page{
+ background:
+ radial-gradient(circle at 4% 8%,#d9eaff 0,transparent 24%),
+ radial-gradient(circle at 92% 8%,#ffdce9 0,transparent 25%),
+ radial-gradient(circle at 8% 88%,#fff0b9 0,transparent 22%),
+ radial-gradient(circle at 92% 88%,#eadcff 0,transparent 27%),
+ linear-gradient(135deg,#fffdf8,#fff9fd 48%,#f8fbff);
+}
+.title{
+ color:#7249a5;
+ text-shadow:2px 2px 0 #fff,3px 3px 0 #eac9f0;
+ border-bottom:3px solid transparent;
+ border-image:linear-gradient(90deg,#ef9fc8,#a8c9ef,#f4d77e,#c2a9e3) 1;
+}
+.sec{color:#724ba1;text-shadow:1px 1px #fff}
+.sec:after{height:3px;background:linear-gradient(90deg,#f29fc9,#9fcaf0,#f4d77e,#bba3df,transparent)}
+.photo{
+ border:2px dashed #a88ac8;
+ background:linear-gradient(145deg,#e8efff,#fce9f4);
+ box-shadow:4px 5px 0 #f3d8e8,-3px -3px 0 #dcecff;
+}
+.photo:after{content:"";position:absolute;inset:0;border:4px solid #fff8;border-radius:13px;pointer-events:none}
+.card:nth-child(4n+1){border-color:#eaa8ca;background:#fff8fc}
+.card:nth-child(4n+2){border-color:#9fc7e8;background:#f8fcff}
+.card:nth-child(4n+3){border-color:#e9ce75;background:#fffdf5}
+.card:nth-child(4n){border-color:#b9a2db;background:#fcf9ff}
+.cloud{background:linear-gradient(90deg,#fff9fc,#f8fbff,#fffdf5)}
+.free:nth-child(1){background:#fff9f4;border-color:#efc48c}
+.free:nth-child(2){background:#fcf8ff;border-color:#bda6dc}
+.cute-icon{position:absolute;z-index:2;pointer-events:none;font-family:"Hachi Maru Pop",cursive;opacity:.58}
+.ci1{left:18px;top:345px;font-size:20px;color:#ef92bd;transform:rotate(-12deg)}
+.ci2{right:18px;top:245px;font-size:23px;color:#75b7e5;transform:rotate(10deg)}
+.ci3{left:22px;bottom:22px;font-size:19px;color:#e8bf55}
+.ci4{right:20px;bottom:180px;font-size:22px;color:#a58acb}
+.ribbon{display:inline-block;padding:0 5px;background:linear-gradient(transparent 45%,#ffd1e6 45% 85%,transparent 85%)}
+.game{
+ padding-right:168px;
+ background:linear-gradient(135deg,#fff9fc,#f8fbff);
+ border-color:#b9a5d1;
+}
+.chars{right:4px;bottom:2px;width:190px;max-height:146px}
+
+
+.book.capture-mode .page{box-shadow:none!important}
+.book.capture-mode .chars{right:4px!important;bottom:2px!important;width:190px!important;max-height:146px!important}
+.book.capture-mode .answerText,.book.capture-mode .ans,.book.capture-mode .blank,.book.capture-mode .name{font-family:var(--answer-font,"Klee One"),"Yu Gothic",sans-serif!important}
+
+.answerText,.ans,.blank,.name{
+ font-family:var(--answer-font,"Klee One"),"Yu Gothic",sans-serif!important;
+ font-synthesis:none;
+}
+
+/* ===== v12 : パステルシール帳デザイン ===== */
+body{background:
+ radial-gradient(circle at 10% 15%,#ffd8ea 0 10%,transparent 27%),
+ radial-gradient(circle at 90% 20%,#d9edff 0 12%,transparent 30%),
+ linear-gradient(135deg,#ffeaf4,#eee8ff 52%,#e7f7ff)}
+header h1{color:#7546a6;text-shadow:2px 2px #fff,4px 4px #ffcfe4}
+.page{
+ background:
+ radial-gradient(circle at 12% 8%,#cceaff 0 10%,transparent 28%),
+ radial-gradient(circle at 87% 10%,#ffd3e6 0 11%,transparent 29%),
+ radial-gradient(circle at 14% 88%,#fff0ad 0 9%,transparent 27%),
+ radial-gradient(circle at 88% 84%,#dfd1ff 0 11%,transparent 30%),
+ linear-gradient(145deg,#fff9fd,#f9fcff 48%,#fffbed)!important
+}
+.page:before{opacity:.34!important;background-image:
+ repeating-linear-gradient(0deg,transparent 0 17px,#c5b5d01a 18px),
+ radial-gradient(#b595c92b .7px,transparent .8px)!important}
+.title{border:0!important;position:relative;padding:3px 9px 7px!important;width:max-content;max-width:100%;z-index:2}
+.title:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;z-index:-1;border-radius:10px;background:linear-gradient(90deg,#ffb8d6aa,#c4dcffaa,#ffe492aa,#d8c2ffaa)}
+.sec{position:relative;width:max-content;max-width:100%;padding:2px 10px 5px;border-radius:14px;background:#fff9;box-shadow:2px 3px 0 #d9c7e766}
+.sec:after{display:none!important}
+.card{border-width:2px!important;box-shadow:2px 3px 0 #d9cee555,inset 0 0 12px #fff!important}
+.card:nth-child(4n+1){background:#fff0f7!important;border-color:#ef9dc5!important}
+.card:nth-child(4n+2){background:#eef9ff!important;border-color:#8bc6e8!important}
+.card:nth-child(4n+3){background:#fff9df!important;border-color:#e8c95e!important}
+.card:nth-child(4n){background:#f6efff!important;border-color:#b397d8!important}
+.cloud{border:2px dashed #d3a9d9!important;background:linear-gradient(90deg,#fff1f8dd,#eef8ffdd,#fff8dcdd)!important}
+.oshi{border:2px dashed #c5a3dd!important;background:linear-gradient(135deg,#fff0f8cc,#f1f6ffcc)!important}
+.game{border:2px dashed #9fc9e5!important;background:linear-gradient(135deg,#fff1f8,#eef9ff,#fff9df)!important}
+.free:nth-child(1){background:#fff5df!important;border:2px dashed #e4c367!important}
+.free:nth-child(2){background:#f8efff!important;border:2px dashed #b69ad6!important}
+.scrap{position:absolute;z-index:2;pointer-events:none;font-family:"Hachi Maru Pop",cursive;filter:drop-shadow(1px 2px 0 #fff);opacity:.78}
+.scrap.heart{font-size:26px;color:#f08ebc}
+.scrap.star{font-size:25px;color:#e8bf3f}
+.scrap.blue{font-size:24px;color:#70b6e7}
+.scrap.lav{font-size:23px;color:#9a78c5}
+.scrap.rabbit{font-size:25px;color:#ed9fc5}
+.scrap.candy{font-size:21px;color:#7dbce5}
+.washi{position:absolute;z-index:2;width:58px;height:18px;opacity:.68;pointer-events:none;
+ background:repeating-linear-gradient(45deg,#fff8 0 6px,transparent 6px 12px),#f4a7c9;
+ clip-path:polygon(3% 8%,97% 0,94% 92%,0 100%)}
+.washi.b{background:repeating-linear-gradient(45deg,#fff8 0 6px,transparent 6px 12px),#8dc8ed}
+.washi.y{background:repeating-linear-gradient(45deg,#fff8 0 6px,transparent 6px 12px),#efd46e}
+.washi.p{background:repeating-linear-gradient(45deg,#fff8 0 6px,transparent 6px 12px),#b99ade}
+.photo{box-shadow:5px 6px 0 #f7cde0,-4px -4px 0 #cfe9fb!important}
+.photo.has-image:after{border:4px solid #fff9!important}
+.chars{right:8px!important;bottom:3px!important;width:184px!important;max-height:142px!important}
+
+/* ===== v13 : 白い紙＋小さなシール帳 / 下切れ修正版 ===== */
+.page{
+  overflow:hidden!important;
+  background:
+    linear-gradient(90deg,rgba(255,221,236,.16),transparent 18%,transparent 82%,rgba(217,235,255,.16)),
+    linear-gradient(180deg,#fffefd,#fffdfd 52%,#fffef9)!important;
+}
+.page:before{
+  opacity:.45!important;
+  background-image:
+    radial-gradient(#d9cde0 0.55px,transparent .7px),
+    linear-gradient(0deg,transparent 0 20px,rgba(202,188,213,.07) 21px)!important;
+  background-size:12px 12px,100% 21px!important;
+}
+/* 前版の大きな色面を消して、色は小物と欄だけに */
+.card:nth-child(4n+1){background:#fff8fb!important}
+.card:nth-child(4n+2){background:#f8fcff!important}
+.card:nth-child(4n+3){background:#fffdf4!important}
+.card:nth-child(4n){background:#fbf8ff!important}
+.cloud{background:#fffdfa!important}
+.oshi{background:#fff!important}
+.game{background:#fff!important}
+.free:nth-child(1){background:#fffdf7!important}
+.free:nth-child(2){background:#fcf9ff!important}
+
+/* 小さい本物のシールっぽい装飾 */
+.sticker{
+ position:absolute;z-index:2;pointer-events:none;
+ display:flex;align-items:center;justify-content:center;
+ background:#fff;border:2px solid #fff;border-radius:10px;
+ box-shadow:0 2px 0 rgba(113,78,137,.13),0 0 0 1px rgba(173,143,193,.18);
+ font-family:"Hachi Maru Pop","Yu Gothic",sans-serif;
+ line-height:1;transform:rotate(var(--r,0deg));
+}
+.sticker.heart{width:30px;height:27px;color:#ef8db8;font-size:22px;background:#fff1f7}
+.sticker.star{width:29px;height:29px;color:#e4b93f;font-size:21px;background:#fff9dc}
+.sticker.bunny{width:34px;height:31px;color:#9c82c7;font-size:19px;background:#f6efff}
+.sticker.blue{width:31px;height:28px;color:#65add8;font-size:20px;background:#eef9ff}
+.sticker.mini{width:25px;height:23px;font-size:16px}
+.scrap{opacity:.48!important;font-size:18px!important}
+.washi{width:48px!important;height:14px!important;opacity:.48!important}
+
+/* 右ページを643px以内に確実に収める */
+.page.right .title{margin-bottom:5px!important}
+.page.right .lovegrid{gap:5px!important;margin-bottom:6px!important}
+.page.right .card{min-height:38px!important;padding:6px 9px!important}
+.page.right .sec{margin-top:4px!important;margin-bottom:5px!important}
+.page.right .oshi{padding:6px!important;margin-bottom:5px!important}
+.page.right .oshi .card{min-height:36px!important}
+.page.right .game{padding:6px 205px 6px 6px!important;gap:5px!important;min-height:137px!important;margin-bottom:0!important}
+.page.right .game .card{min-height:35px!important;padding:5px 8px!important}
+.page.right .chars{
+ right:8px!important;bottom:7px!important;
+ width:176px!important;max-height:132px!important;
+ object-fit:contain!important;object-position:right bottom!important;
+}
+/* 最後のセクションがページ外へ逃げない */
+.page.right>*{box-sizing:border-box}
+
+/* ===== v14 : 右ページ下切れ・確実修正 ===== */
+/* 右ページの中身だけを均等に少し縮小。
+   個別の欄を潰すより、文字・余白・枠の比率を保ったまま全項目を643px内へ収める。 */
+.page.right .inner{
+  transform:scale(.91);
+  transform-origin:top left;
+  width:109.9%;
+}
+.page.right .game{
+  min-height:128px!important;
+  padding:6px 194px 6px 6px!important;
+}
+.page.right .chars{
+  right:10px!important;
+  bottom:12px!important;
+  width:168px!important;
+  max-height:124px!important;
+}
+.book.capture-mode .page.right .inner{
+  transform:scale(.91)!important;
+  transform-origin:top left!important;
+  width:109.9%!important;
+}
+.book.capture-mode .page.right .chars{
+  right:10px!important;
+  bottom:12px!important;
+  width:168px!important;
+  max-height:124px!important;
+}
+
+
+/* ===== v15 : 平成ぷっくりシール帳 ===== */
+/* v14の寸法はそのまま。装飾だけ追加。 */
+.sticker{
+  border:2px solid rgba(255,255,255,.96)!important;
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,.95),
+    inset 0 -2px 4px rgba(120,80,150,.08),
+    0 2px 3px rgba(111,75,135,.16),
+    0 0 0 1px rgba(183,145,205,.14)!important;
+}
+.sticker:after{
+  content:"";
+  position:absolute;left:5px;top:3px;width:8px;height:4px;
+  border-radius:50%;background:rgba(255,255,255,.85);
+  transform:rotate(-20deg)
+}
+.sticker.ribbon{width:37px;height:28px;background:#fff0f7;color:#e982b1;font-size:20px}
+.sticker.cherry{width:35px;height:29px;background:#fff3f7;color:#e86d9f;font-size:19px}
+.sticker.flower{width:32px;height:30px;background:#fff9dc;color:#dfb83f;font-size:19px}
+.sticker.candy2{width:37px;height:28px;background:#edf9ff;color:#62add7;font-size:18px}
+.sticker.holo{
+ background:
+   linear-gradient(135deg,rgba(255,182,215,.8),rgba(185,226,255,.85) 35%,rgba(255,240,165,.8) 67%,rgba(213,190,255,.85))!important;
+ color:#fff;text-shadow:0 1px 2px #8d72a8;font-size:18px;
+}
+.tiny-spark{position:absolute;z-index:2;pointer-events:none;font-size:13px;line-height:1;opacity:.72}
+.tiny-spark.p{color:#ef9fc1}.tiny-spark.b{color:#8ac7e7}.tiny-spark.y{color:#e2bf50}.tiny-spark.v{color:#a98bca}
+
+/* 見出し：蛍光ペン＋シール帳の線 */
+.sec{
+ box-shadow:2px 3px 0 rgba(213,193,227,.34)!important;
+}
+.sec:before{
+ content:"";position:absolute;z-index:-1;left:5px;right:-12px;bottom:4px;height:9px;
+ border-radius:8px;
+ background:linear-gradient(90deg,rgba(255,167,204,.50),rgba(166,216,244,.48),rgba(255,224,121,.45));
+ transform:rotate(-.5deg)
+}
+.title:after{
+ background:linear-gradient(90deg,#ffb3d2aa,#b9ddf7aa 38%,#ffe080aa 68%,#ceb7efaa)!important;
+ height:9px!important
+}
+
+/* カードをほんのりシール紙っぽく */
+.card{
+ box-shadow:
+  inset 0 1px 0 rgba(255,255,255,.95),
+  1px 2px 0 rgba(150,120,170,.08)!important;
+}
+
+
+/* ===== v16 : Android / iPhone Safari 共通固定レイアウト ===== */
+.book,.page,.page *{box-sizing:border-box}
+.book{width:1000px!important;height:643px!important;min-width:1000px!important;min-height:643px!important}
+.page{width:500px!important;height:643px!important;padding:18px 27px 16px!important}
+
+/* Safari差が出やすい transform 縮小を完全撤去 */
+.page.right .inner,.book.capture-mode .page.right .inner{
+ transform:none!important;width:auto!important;height:auto!important;
+}
+
+/* 行高を固定して端末フォント計算差を抑える */
+.title{font-size:24px!important;line-height:1.18!important;margin-bottom:5px!important}
+.title small{line-height:1.15!important}
+.sentence{line-height:1.82!important}
+.cloud{line-height:1.55!important;margin-top:5px!important;padding:5px 9px!important}
+.sec{font-size:18px!important;line-height:1.15!important;margin:6px 0 4px!important}
+.label{line-height:1.15!important}
+.ans{line-height:1.22!important}
+
+/* 左右とも固定寸法で安全余白を作る */
+.profile{grid-template-columns:116px 1fr!important;gap:12px!important}
+.photo{height:148px!important}
+.grid{gap:4px 7px!important}
+.card{min-height:36px!important;padding:4px 8px!important}
+.free{min-height:70px!important;padding:7px!important}
+.freegrid{gap:7px!important}
+
+/* 右ページ：scaleなしで643px内へ */
+.page.right .lovegrid,.page.right #lovegrid{gap:4px 7px!important;margin-bottom:3px!important}
+.page.right .card{min-height:34px!important;padding:4px 8px!important}
+.page.right .oshi{padding:5px!important;margin-bottom:3px!important}
+.page.right .oshi .card{min-height:33px!important}
+.page.right .game{
+ min-height:121px!important;
+ padding:5px 190px 5px 5px!important;
+ margin-bottom:0!important;
+}
+.page.right .game .card{min-height:31px!important;padding:3px 7px!important}
+.page.right .chars,
+.book.capture-mode .page.right .chars{
+ right:9px!important;bottom:18px!important;width:164px!important;max-height:118px!important
+}
+
+/* iOS Safariの文字自動拡大を防止 */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.page{-webkit-text-size-adjust:none;text-size-adjust:none}
+
+/* 下端セーフティ */
+.page .inner{max-height:600px!important;overflow:visible}
+
+
+/* ===== みったーぷろふ：平成プロフ帳デコ仕上げ ===== */
+/* レイアウト寸法は変更しない。装飾はすべて pointer-events:none */
+.page{overflow:hidden}
+
+/* 紙のうっすらした罫線・印刷感 */
+.page::after{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    repeating-linear-gradient(0deg,rgba(120,92,150,.018) 0 1px,transparent 1px 5px),
+    radial-gradient(circle at 18% 15%,rgba(255,181,216,.07),transparent 18%),
+    radial-gradient(circle at 83% 76%,rgba(158,214,245,.07),transparent 20%);
+  mix-blend-mode:multiply;
+}
+.inner{position:relative;z-index:3}
+
+/* 見出しの蛍光ペン風ライン */
+.sec{
+  position:relative;
+  isolation:isolate;
+}
+.sec::before{
+  content:""; position:absolute; z-index:-1;
+  left:-5px; bottom:3px; width:78%; height:9px;
+  border-radius:9px;
+  background:linear-gradient(90deg,
+    rgba(255,169,210,.48),
+    rgba(255,231,132,.45),
+    rgba(168,220,245,.38),
+    rgba(206,181,239,.30),
+    transparent);
+  transform:rotate(-.5deg);
+}
+
+/* ぷっくりシール風の小さな余白デコ */
+.heisei-deco{
+  position:absolute; z-index:2; pointer-events:none;
+  font-family:"Hachi Maru Pop","Klee One",sans-serif;
+  line-height:1;
+  filter:drop-shadow(0 2px 1px rgba(117,80,145,.10));
+  user-select:none;
+}
+.heisei-deco.bubble{
+  display:grid; place-items:center;
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(255,209,232,.64));
+  border:2px solid rgba(239,156,198,.48);
+  box-shadow:inset 2px 2px 4px #fff, inset -2px -2px 4px rgba(207,164,225,.16);
+  color:#df8fba;font-size:17px;
+}
+.heisei-deco.star{font-size:25px;color:#e7c958;text-shadow:1px 1px #fff}
+.heisei-deco.heart{font-size:25px;color:#efa3c7;text-shadow:1px 1px #fff}
+.heisei-deco.blue{font-size:23px;color:#8bc8e9;text-shadow:1px 1px #fff}
+.heisei-deco.purple{font-size:21px;color:#b69ad7;text-shadow:1px 1px #fff}
+
+/* 小さなホログラム風シール */
+.holo{
+  position:absolute;z-index:2;pointer-events:none;
+  width:30px;height:17px;border-radius:4px;
+  background:linear-gradient(120deg,
+    rgba(255,176,214,.55),
+    rgba(255,237,147,.48),
+    rgba(153,220,246,.50),
+    rgba(207,179,239,.50));
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:inset 0 0 5px #fff9,0 1px 2px #8e75a522;
+  opacity:.75;
+}
+
+/* 写真の上には装飾を絶対に重ねない */
+.photo{z-index:6}
+.photo img{position:relative;z-index:7}
+
+/* 右下キャラクターは既存の安全位置を維持 */
+.chars{z-index:8}
+
+/* デコ位置：入力欄・写真を避けた余白だけ */
+.left .d1{right:22px;top:62px}
+.left .d2{right:35px;top:178px}
+.left .d3{right:18px;top:292px}
+.left .d4{left:18px;bottom:23px}
+.left .d5{right:174px;bottom:117px;transform:rotate(-7deg)}
+.left .h1{right:95px;top:305px;transform:rotate(9deg)}
+
+.right .d1{right:18px;top:61px}
+.right .d2{right:24px;top:250px}
+.right .d3{left:17px;top:395px}
+.right .d4{right:22px;bottom:194px}
+.right .d5{left:22px;bottom:19px}
+.right .h1{right:74px;top:18px;transform:rotate(9deg)}
+
+/* PNG化時にも同じ見た目を維持 */
+@media(max-width:850px){
+  .heisei-deco,.holo{pointer-events:none}
+}
+
+
+/* iPhone / iPad Safari 保存用ビュー */
+#iosSaveViewer{position:fixed;inset:0;z-index:99999;display:none;overflow:auto;padding:18px;background:rgba(54,40,67,.72);-webkit-overflow-scrolling:touch}#iosSaveViewer.show{display:block}.ios-save-panel{position:relative;width:min(96vw,1050px);margin:10px auto 40px;padding:18px 12px 24px;border-radius:22px;background:#fffafeee;box-shadow:0 12px 45px #34253d66;text-align:center}.ios-save-title{font:700 21px "Hachi Maru Pop","Klee One",sans-serif;color:#7253a2;margin:3px 42px 5px}.ios-save-note{font:13px "Klee One","Yu Gothic",sans-serif;color:#75677f;margin:4px 8px 12px}.ios-save-note.small{font-size:11px;margin-top:10px}.ios-save-image{display:block;width:100%;height:auto;margin:auto;border-radius:12px;box-shadow:0 4px 18px #66527c30;-webkit-touch-callout:default;user-select:auto}.ios-close{position:absolute;right:10px;top:8px;width:38px;height:38px;margin:0;padding:0;border:0;border-radius:50%;background:#eee6f4;color:#6f5982;font:28px/38px sans-serif}
+
+/* ===== かわいい仕上げ：散らしデコ＋読みやすさ ===== */
+.game-title{font-family:"Klee One","Yu Gothic",sans-serif!important;font-weight:600!important;letter-spacing:.02em}
+.page .inner{position:relative;z-index:3}
+.page::after{content:"";position:absolute;inset:12px;z-index:1;pointer-events:none;border-radius:18px;background:
+ radial-gradient(circle at 94% 18%,#ffc9df 0 2px,transparent 3px),
+ radial-gradient(circle at 91% 22%,#bfe6fb 0 2px,transparent 3px),
+ radial-gradient(circle at 7% 48%,#ffe69a 0 2px,transparent 3px),
+ radial-gradient(circle at 94% 73%,#d7c4f0 0 2px,transparent 3px),
+ radial-gradient(circle at 8% 91%,#f7bdd7 0 2px,transparent 3px);
+ opacity:.9}
+/* シールは文字や写真にかぶらない外周中心 */
+.kawaii-sticker{position:absolute;z-index:4;display:grid;place-items:center;pointer-events:none;line-height:1;filter:drop-shadow(0 2px 0 #fff);opacity:.78}
+.kawaii-sticker.ks-heart{width:28px;height:25px;border:2px solid #f2a1c3;border-radius:48% 48% 52% 52%;color:#ee8db7;font:17px "Hachi Maru Pop";background:#fff6fa;transform:rotate(-8deg)}
+.kawaii-sticker.ks-star{color:#e7c34d;font:25px "Hachi Maru Pop";transform:rotate(12deg)}
+.kawaii-sticker.ks-flower{color:#83bfe4;font:23px "Hachi Maru Pop";transform:rotate(-8deg)}
+.kawaii-sticker.ks-candy{color:#a78ad0;font:20px "Hachi Maru Pop";background:#f6efff;border-radius:8px;padding:3px 6px;transform:rotate(9deg)}
+.left .ks1{left:12px;top:292px}.left .ks2{right:15px;top:404px}.left .ks3{left:18px;bottom:18px}.left .ks4{right:24px;bottom:155px}
+.right .ks1{right:13px;top:290px}.right .ks2{left:15px;top:405px}.right .ks3{left:22px;bottom:18px}.right .ks4{right:18px;bottom:158px}
+/* 既存の散らし装飾を少し薄くして偏りを軽減 */
+.scrap,.sticker,.cute-icon,.heisei-deco{opacity:.34!important}
+/* 写真枠は常に最前面。装飾は画像の上に載せない */
+.photo{z-index:6!important}.photo img{position:relative;z-index:7}.photo.has-image:before,.photo.has-image:after{pointer-events:none}
+
+
+/* ===== 台紙そのものを可愛く：シール控えめ ===== */
+/* 後付けシール類はほぼ消して、紙の柄で可愛くする */
+.page .sticker,.page .scrap,.page .cute-icon,.page .heisei-deco,.page .holo,.page .kawaii-sticker,.page .tiny-spark,.page .washi,.page .tape,.page .doodle{display:none!important}
+.page::after{display:none!important}
+
+/* 共通：印刷されたプロフ帳のような細かな紙柄 */
+.page{background-color:#fffafd!important}
+.page:before{opacity:1!important;z-index:0!important;pointer-events:none;background-size:auto!important}
+.inner{z-index:3!important}
+
+/* 1. ゆめかわ：淡い水彩＋小さな星とハート */
+.book.theme-yumekawa .page:before{
+ background:
+ radial-gradient(circle at 8% 9%,rgba(190,224,255,.55) 0 5%,transparent 18%),
+ radial-gradient(circle at 90% 12%,rgba(255,201,225,.48) 0 6%,transparent 19%),
+ radial-gradient(circle at 12% 90%,rgba(255,234,165,.42) 0 5%,transparent 18%),
+ radial-gradient(circle at 90% 88%,rgba(216,201,249,.48) 0 7%,transparent 20%),
+ radial-gradient(circle,rgba(238,164,199,.22) 0 1.3px,transparent 1.7px),
+ linear-gradient(135deg,#fffdfd 0%,#fff9fc 47%,#f8fbff 100%)!important;
+ background-size:auto,auto,auto,auto,26px 26px,auto!important
+}
+/* 2. 平成プロフ帳：方眼＋パステルライン */
+.book.theme-heisei .page:before{
+ background:
+ linear-gradient(rgba(211,190,230,.16) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(211,190,230,.16) 1px,transparent 1px),
+ repeating-linear-gradient(135deg,rgba(255,186,216,.10) 0 9px,rgba(176,221,246,.10) 9px 18px,rgba(255,231,150,.09) 18px 27px),
+ linear-gradient(#fffdfd,#fffaf7)!important;
+ background-size:18px 18px,18px 18px,auto,auto!important
+}
+/* 3. お花：余白にだけ小花が見える紙 */
+.book.theme-flower .page:before{
+ background:
+ radial-gradient(circle at 12px 12px,rgba(239,166,202,.24) 0 2px,transparent 2.4px),
+ radial-gradient(circle at 18px 12px,rgba(239,166,202,.18) 0 2px,transparent 2.4px),
+ radial-gradient(circle at 15px 17px,rgba(156,202,234,.20) 0 2px,transparent 2.4px),
+ radial-gradient(circle at 70% 15%,rgba(255,221,239,.46),transparent 23%),
+ radial-gradient(circle at 20% 86%,rgba(220,239,255,.52),transparent 24%),
+ linear-gradient(145deg,#fffdfb,#fffafd)!important;
+ background-size:42px 42px,42px 42px,42px 42px,auto,auto,auto!important
+}
+/* 4. チェック：薄いギンガム風 */
+.book.theme-check .page:before{
+ background:
+ linear-gradient(90deg,rgba(240,172,207,.10) 50%,transparent 50%),
+ linear-gradient(rgba(157,205,236,.10) 50%,transparent 50%),
+ linear-gradient(135deg,#fffefd,#fff9fc)!important;
+ background-size:24px 24px,24px 24px,auto!important
+}
+/* 回答欄は柄を透かしすぎず読みやすく */
+.card,.cloud,.oshi,.game,.free{background-color:rgba(255,255,255,.84)!important;backdrop-filter:none!important}
+/* 見出しの下にだけ印刷された蛍光ペン感 */
+.title .ribbon,.sec,.game-title{background:linear-gradient(transparent 58%,rgba(255,211,231,.52) 58% 86%,transparent 86%)}
+
+
+/* ===== 台紙デザイン強化 ===== */
+.page{position:relative!important}.page:before{content:""!important;position:absolute!important;inset:0!important;opacity:1!important;z-index:0!important;pointer-events:none!important}.page .inner{position:relative!important;z-index:3!important}
+.book.theme-yumekawa .page:before{background:radial-gradient(circle at 7% 8%,#bfe5ff 0 3px,transparent 4px),radial-gradient(circle at 13% 14%,#ffd2e7 0 5px,transparent 6px),radial-gradient(circle at 91% 8%,#fff0a9 0 4px,transparent 5px),radial-gradient(circle at 94% 18%,#d8c8ff 0 6px,transparent 7px),radial-gradient(circle at 8% 86%,rgba(177,221,255,.58) 0 25px,transparent 27px),radial-gradient(circle at 94% 89%,rgba(255,197,225,.52) 0 30px,transparent 32px),linear-gradient(90deg,rgba(197,229,255,.30),transparent 14%,transparent 86%,rgba(255,207,230,.30)),linear-gradient(#fffdfd,#fff9fc)!important}
+.book.theme-heisei .page:before{background:linear-gradient(rgba(185,164,211,.19) 1px,transparent 1px),linear-gradient(90deg,rgba(185,164,211,.19) 1px,transparent 1px),linear-gradient(90deg,rgba(255,180,214,.25),transparent 13%,transparent 87%,rgba(158,211,243,.27)),linear-gradient(180deg,rgba(255,233,147,.17),transparent 18%,transparent 82%,rgba(205,184,242,.17)),#fffdfc!important;background-size:18px 18px,18px 18px,auto,auto,auto!important}
+.book.theme-flower .page:before{background:radial-gradient(circle at 18px 18px,#f2a9c8 0 3px,transparent 3.5px),radial-gradient(circle at 25px 18px,#f8c8dc 0 3px,transparent 3.5px),radial-gradient(circle at 21px 24px,#a9d6ed 0 3px,transparent 3.5px),radial-gradient(circle at calc(100% - 20px) 22px,#e6b6db 0 4px,transparent 4.5px),radial-gradient(circle at calc(100% - 27px) 28px,#acd9ee 0 3px,transparent 3.5px),linear-gradient(90deg,rgba(255,223,236,.33),transparent 16%,transparent 84%,rgba(219,239,255,.34)),linear-gradient(#fffefc,#fffafd)!important;background-size:54px 54px,54px 54px,54px 54px,72px 72px,72px 72px,auto,auto!important}
+.book.theme-check .page:before{background:linear-gradient(90deg,rgba(255,255,255,.82) 22%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.82) 78%),linear-gradient(90deg,rgba(239,160,199,.22) 50%,transparent 50%),linear-gradient(rgba(130,190,230,.20) 50%,transparent 50%),linear-gradient(135deg,#fff8fc,#f8fbff)!important;background-size:auto,28px 28px,28px 28px,auto!important}
+.book.theme-seal .page{color:#392d46!important;background:#f7f2fa!important}
+.book.theme-seal .page:before{background:radial-gradient(circle at 9% 11%,transparent 0 18px,rgba(87,55,111,.20) 19px 20px,transparent 21px),radial-gradient(circle at 91% 88%,transparent 0 27px,rgba(117,38,77,.18) 28px 30px,transparent 31px),repeating-radial-gradient(circle at 8% 88%,rgba(83,55,105,.12) 0 1px,transparent 1px 8px),linear-gradient(135deg,rgba(59,38,78,.14),transparent 24%,transparent 75%,rgba(122,34,70,.13)),linear-gradient(90deg,rgba(54,37,68,.15),transparent 13%,transparent 87%,rgba(71,47,88,.15)),#fbf8fc!important}
+.book.theme-seal .page:after{content:"†  ☾  ⛓  ✦  ☽  †"!important;display:block!important;position:absolute;left:0;right:0;bottom:5px;text-align:center;color:rgba(76,47,94,.38);font:15px "Yuji Syuku",serif;letter-spacing:12px;z-index:1;pointer-events:none}
+.book.theme-seal .title,.book.theme-seal .sec,.book.theme-seal .game-title{color:#513467!important;text-shadow:1px 1px #fff}.book.theme-seal .card,.book.theme-seal .cloud,.book.theme-seal .oshi,.book.theme-seal .game,.book.theme-seal .free{background:rgba(255,253,255,.90)!important;border-color:rgba(96,62,118,.38)!important}
+.game-title{font-family:"Klee One","Yu Gothic",sans-serif!important;font-weight:600!important;letter-spacing:0!important}
+
+
+/* ===== 封印ノ頁：漆黒版 ===== */
+.book.theme-seal .page{
+  background:#09070d!important;
+  color:#e8dff0!important;
+  box-shadow:inset 0 0 70px rgba(100,45,120,.22)!important;
+}
+.book.theme-seal .page:before{
+  background:
+    radial-gradient(circle at 10% 12%,transparent 0 48px,rgba(178,114,214,.38) 49px 51px,transparent 52px),
+    radial-gradient(circle at 10% 12%,transparent 0 34px,rgba(178,114,214,.20) 35px 36px,transparent 37px),
+    repeating-radial-gradient(circle at 91% 87%,rgba(166,80,132,.20) 0 1px,transparent 2px 10px),
+    linear-gradient(135deg,rgba(109,45,130,.23),transparent 26%,transparent 72%,rgba(132,34,75,.22)),
+    linear-gradient(90deg,rgba(111,70,139,.18),transparent 14%,transparent 86%,rgba(126,54,93,.18)),
+    #09070d!important;
+}
+.book.theme-seal .page:after{
+  content:"†   ☾   ✦   †   ✦   ☽   †"!important;
+  color:rgba(213,166,235,.55)!important;
+  text-shadow:0 0 8px rgba(177,93,217,.45)!important;
+}
+.book.theme-seal .title,
+.book.theme-seal .sec,
+.book.theme-seal .game-title{
+  color:#ead7f6!important;
+  text-shadow:0 0 7px rgba(180,105,220,.42)!important;
+}
+.book.theme-seal .title .ribbon,
+.book.theme-seal .sec,
+.book.theme-seal .game-title{
+  background:linear-gradient(transparent 60%,rgba(119,45,143,.48) 60% 88%,transparent 88%)!important;
+}
+.book.theme-seal .card,
+.book.theme-seal .cloud,
+.book.theme-seal .oshi,
+.book.theme-seal .game,
+.book.theme-seal .free{
+  background:rgba(20,15,27,.88)!important;
+  border-color:#76528b!important;
+  color:#eee5f4!important;
+}
+.book.theme-seal .ans,
+.book.theme-seal .line,
+.book.theme-seal .mini,
+.book.theme-seal .q,
+.book.theme-seal .label{
+  color:#eee5f4!important;
+  border-color:#76528b!important;
+}
+.book.theme-seal .hole{background:#33263e!important}
+
+
+/* ===== 台紙テーマ：作り込み版 ===== */
+.page{isolation:isolate}
+.page:before{z-index:0!important}
+.page .inner{z-index:3!important}
+
+/* 1 ゆめかわ：空・雲・虹・星・泡。中央は読みやすく */
+.book.theme-yumekawa .page:before{
+ background:
+ radial-gradient(circle at 5% 8%,rgba(255,255,255,.95) 0 22px,transparent 23px),
+ radial-gradient(circle at 9% 8%,rgba(255,255,255,.92) 0 30px,transparent 31px),
+ radial-gradient(circle at 13% 9%,rgba(255,255,255,.94) 0 20px,transparent 21px),
+ radial-gradient(circle at 93% 86%,rgba(255,255,255,.94) 0 28px,transparent 29px),
+ radial-gradient(circle at 88% 88%,rgba(255,255,255,.9) 0 20px,transparent 21px),
+ radial-gradient(circle at 6% 28%,rgba(181,224,255,.35) 0 8px,transparent 9px),
+ radial-gradient(circle at 94% 31%,rgba(255,190,222,.35) 0 11px,transparent 12px),
+ radial-gradient(circle at 90% 8%,#fff2a9 0 3px,transparent 4px),
+ radial-gradient(circle at 84% 13%,#d8c5ff 0 4px,transparent 5px),
+ radial-gradient(circle at 17% 88%,#ffcce2 0 4px,transparent 5px),
+ linear-gradient(90deg,rgba(190,226,255,.42),transparent 17%,transparent 83%,rgba(255,195,224,.42)),
+ linear-gradient(180deg,rgba(224,207,255,.30),transparent 22%,transparent 78%,rgba(255,235,170,.28)),
+ #fffafd!important;
+}
+.book.theme-yumekawa .page:after{
+ content:"☁  ✦  ☆  ○  ✧  ☁"!important;position:absolute;left:22px;right:22px;bottom:7px;
+ color:rgba(150,121,197,.40);font-size:18px;letter-spacing:17px;text-align:center;z-index:1
+}
+
+/* 2 平成：方眼だけで終わらせず、ドット・ハート・星・レース感 */
+.book.theme-heisei .page:before{
+ background:
+ radial-gradient(circle at 4% 7%,#ffb9d4 0 3px,transparent 4px),
+ radial-gradient(circle at 9% 13%,#9fd6ef 0 3px,transparent 4px),
+ radial-gradient(circle at 95% 9%,#ffe28b 0 3px,transparent 4px),
+ radial-gradient(circle at 92% 91%,#cbb4ec 0 4px,transparent 5px),
+ linear-gradient(rgba(188,170,211,.18) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(188,170,211,.18) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,184,215,.25),transparent 14%,transparent 86%,rgba(155,213,242,.27)),
+ #fffdfc!important;
+ background-size:auto,auto,auto,auto,18px 18px,18px 18px,auto,auto!important
+}
+.book.theme-heisei .page:after{
+ content:"♡  ☆  •  ♡  •  ☆  ♡"!important;position:absolute;left:18px;right:18px;bottom:5px;
+ color:rgba(171,120,185,.40);font-size:15px;letter-spacing:12px;text-align:center;z-index:1
+}
+
+/* 3 お花：本当に花に見える外周。中央は白 */
+.book.theme-flower .page:before{
+ background:
+ radial-gradient(circle at 30px 28px,#ffd66e 0 3px,transparent 4px),
+ radial-gradient(ellipse at 30px 18px,#f5a9c7 0 7px,transparent 8px),
+ radial-gradient(ellipse at 30px 38px,#f5a9c7 0 7px,transparent 8px),
+ radial-gradient(ellipse at 20px 28px,#f5a9c7 0 7px,transparent 8px),
+ radial-gradient(ellipse at 40px 28px,#f5a9c7 0 7px,transparent 8px),
+ radial-gradient(circle at calc(100% - 34px) 52px,#ffe18b 0 3px,transparent 4px),
+ radial-gradient(ellipse at calc(100% - 34px) 42px,#a9d9ed 0 7px,transparent 8px),
+ radial-gradient(ellipse at calc(100% - 34px) 62px,#a9d9ed 0 7px,transparent 8px),
+ radial-gradient(ellipse at calc(100% - 44px) 52px,#a9d9ed 0 7px,transparent 8px),
+ radial-gradient(ellipse at calc(100% - 24px) 52px,#a9d9ed 0 7px,transparent 8px),
+ linear-gradient(90deg,rgba(255,224,236,.42),transparent 16%,transparent 84%,rgba(219,241,232,.42)),
+ #fffdfb!important
+}
+.book.theme-flower .page:after{
+ content:"❀   ❁   ❀   ❁   ❀"!important;position:absolute;left:12px;right:12px;bottom:5px;
+ color:rgba(189,113,153,.38);font-size:17px;letter-spacing:18px;text-align:center;z-index:1
+}
+
+/* 4 チェック：布・便箋っぽいギンガム＋中央フェード */
+.book.theme-check .page:before{
+ background:
+ linear-gradient(90deg,rgba(255,255,255,.73) 18%,rgba(255,255,255,.43) 50%,rgba(255,255,255,.73) 82%),
+ repeating-linear-gradient(90deg,rgba(244,171,205,.16) 0 14px,rgba(166,214,239,.13) 14px 28px),
+ repeating-linear-gradient(0deg,rgba(203,180,232,.14) 0 14px,rgba(255,232,163,.11) 14px 28px),
+ #fffafd!important
+}
+.book.theme-check .page:after{
+ content:"♡      ♡      ♡"!important;position:absolute;left:20px;right:20px;bottom:5px;
+ color:rgba(161,127,189,.30);font-size:14px;text-align:center;z-index:1
+}
+
+/* 5 封印ノ頁：漆黒＋読める回答欄＋大きな封印紋 */
+.book.theme-seal .page:before{
+ background:
+ radial-gradient(circle at 10% 14%,transparent 0 64px,rgba(190,117,224,.26) 65px 67px,transparent 68px),
+ radial-gradient(circle at 10% 14%,transparent 0 45px,rgba(190,117,224,.18) 46px 47px,transparent 48px),
+ repeating-conic-gradient(from 0deg at 10% 14%,rgba(190,117,224,.16) 0deg 1deg,transparent 1deg 30deg),
+ radial-gradient(circle at 91% 84%,transparent 0 82px,rgba(146,55,104,.23) 83px 85px,transparent 86px),
+ linear-gradient(135deg,rgba(98,42,121,.23),transparent 27%,transparent 72%,rgba(129,34,77,.22)),
+ #08060c!important
+}
+.book.theme-seal .page:after{
+ content:"†   ☾   ⛓   ✦   ☽   †"!important;color:rgba(222,169,243,.62)!important;
+ text-shadow:0 0 9px rgba(188,94,226,.55)!important
+}
+/* 中二の質問カードは「白枠＋黒棒」をやめる */
+.book.theme-seal .qa,
+.book.theme-seal .mini-card,
+.book.theme-seal .fav-item,
+.book.theme-seal .oshi-item,
+.book.theme-seal .game-item{
+ background:rgba(30,22,38,.94)!important;
+ border-color:#8e66a3!important;
+ box-shadow:inset 0 0 0 1px rgba(213,169,233,.10)!important
+}
+.book.theme-seal .qa:before,
+.book.theme-seal .qa:after,
+.book.theme-seal .mini-card:before,
+.book.theme-seal .mini-card:after,
+.book.theme-seal .fav-item:before,
+.book.theme-seal .fav-item:after,
+.book.theme-seal .oshi-item:before,
+.book.theme-seal .oshi-item:after,
+.book.theme-seal .game-item:before,
+.book.theme-seal .game-item:after{background:transparent!important}
+.book.theme-seal .q,
+.book.theme-seal .label,
+.book.theme-seal .ans,
+.book.theme-seal .answer,
+.book.theme-seal .out{color:#f0e8f5!important}
+.book.theme-seal .answer-line,
+.book.theme-seal .line{background:transparent!important;border-color:#735486!important;color:#f0e8f5!important}
+
+
+
+/* ===== FINAL THEME SYSTEM : 台紙をテーマごとに完全分離 ===== */
+/* 既存の後付け装飾は使わず、台紙だけで雰囲気を作る。レイアウト寸法は変更しない。 */
+.book .page{isolation:isolate!important}
+.book .page::before,.book .page::after{content:""!important;display:block!important;position:absolute!important;inset:0!important;pointer-events:none!important}
+.book .page::before{z-index:0!important;opacity:1!important}
+.book .page::after{z-index:1!important}
+.book .page>.inner{position:relative!important;z-index:3!important}
+
+/* ゆめかわ水彩：雲・泡・虹色の光。左右で配置を変える */
+.book.theme-yumekawa .page{background:#fffafd!important}
+.book.theme-yumekawa .left::before{background:
+ radial-gradient(ellipse at 4% 5%,#fff 0 28px,transparent 30px),radial-gradient(ellipse at 10% 7%,#fff 0 38px,transparent 40px),
+ radial-gradient(circle at 93% 10%,rgba(255,194,224,.58) 0 34px,transparent 78px),radial-gradient(circle at 5% 82%,rgba(174,221,255,.58) 0 42px,transparent 92px),
+ radial-gradient(circle at 91% 89%,rgba(215,196,255,.48) 0 38px,transparent 86px),linear-gradient(90deg,rgba(185,226,255,.32),transparent 18%,transparent 82%,rgba(255,201,226,.32)),#fffafd!important}
+.book.theme-yumekawa .right::before{background:
+ radial-gradient(ellipse at 96% 5%,#fff 0 30px,transparent 32px),radial-gradient(ellipse at 89% 8%,#fff 0 40px,transparent 42px),
+ radial-gradient(circle at 8% 12%,rgba(211,194,255,.52) 0 34px,transparent 80px),radial-gradient(circle at 94% 78%,rgba(174,225,255,.55) 0 42px,transparent 92px),
+ radial-gradient(circle at 8% 91%,rgba(255,222,157,.42) 0 34px,transparent 82px),linear-gradient(90deg,rgba(255,204,228,.30),transparent 18%,transparent 82%,rgba(188,226,255,.32)),#fffafd!important}
+.book.theme-yumekawa .page::after{inset:9px!important;border-radius:18px;background:
+ radial-gradient(circle at 8% 20%,#f6b9d5 0 2px,transparent 3px),radial-gradient(circle at 92% 28%,#9fd7ef 0 2px,transparent 3px),
+ radial-gradient(circle at 6% 63%,#d0b7ef 0 2px,transparent 3px),radial-gradient(circle at 94% 68%,#f5d878 0 2px,transparent 3px),
+ radial-gradient(circle at 17% 94%,#f2bdd5 0 2px,transparent 3px),radial-gradient(circle at 82% 5%,#b9dff5 0 2px,transparent 3px)!important}
+
+/* 平成プロフ帳：方眼＋パステル印刷＋ページ端のドットレース */
+.book.theme-heisei .page{background:#fffdf9!important}
+.book.theme-heisei .page::before{background:
+ linear-gradient(rgba(178,157,204,.19) 1px,transparent 1px),linear-gradient(90deg,rgba(178,157,204,.19) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(255,177,212,.24),transparent 15%,transparent 85%,rgba(147,207,239,.25)),
+ linear-gradient(180deg,rgba(255,228,124,.15),transparent 16%,transparent 84%,rgba(201,178,239,.17)),#fffdf9!important;background-size:18px 18px,18px 18px,auto,auto,auto!important}
+.book.theme-heisei .page::after{inset:8px!important;border-radius:17px;border-top:5px dotted rgba(239,157,197,.34);border-bottom:5px dotted rgba(133,194,229,.32);background:
+ radial-gradient(circle at 3% 16%,#f2a7c9 0 3px,transparent 4px),radial-gradient(circle at 97% 24%,#8fc8e8 0 3px,transparent 4px),
+ radial-gradient(circle at 4% 76%,#efd16b 0 3px,transparent 4px),radial-gradient(circle at 96% 83%,#b89bd8 0 3px,transparent 4px)!important}
+
+/* お花：中央を白く、外周に花畑のような小花と葉 */
+.book.theme-flower .page{background:#fffdfb!important}
+.book.theme-flower .page::before{background:
+ radial-gradient(circle at 4% 8%,#f4c55f 0 3px,transparent 4px),radial-gradient(circle at 4% 6%,#f3a9c7 0 7px,transparent 8px),radial-gradient(circle at 2% 8%,#f3a9c7 0 7px,transparent 8px),radial-gradient(circle at 6% 8%,#f3a9c7 0 7px,transparent 8px),radial-gradient(circle at 4% 10%,#f3a9c7 0 7px,transparent 8px),
+ radial-gradient(circle at 95% 16%,#f0cf67 0 3px,transparent 4px),radial-gradient(circle at 95% 14%,#a8d7ec 0 7px,transparent 8px),radial-gradient(circle at 93% 16%,#a8d7ec 0 7px,transparent 8px),radial-gradient(circle at 97% 16%,#a8d7ec 0 7px,transparent 8px),radial-gradient(circle at 95% 18%,#a8d7ec 0 7px,transparent 8px),
+ radial-gradient(circle at 5% 87%,#efd36f 0 3px,transparent 4px),radial-gradient(circle at 5% 85%,#c7b0e4 0 7px,transparent 8px),radial-gradient(circle at 3% 87%,#c7b0e4 0 7px,transparent 8px),radial-gradient(circle at 7% 87%,#c7b0e4 0 7px,transparent 8px),radial-gradient(circle at 5% 89%,#c7b0e4 0 7px,transparent 8px),
+ linear-gradient(90deg,rgba(255,220,235,.34),transparent 15%,transparent 85%,rgba(213,239,229,.34)),#fffdfb!important}
+.book.theme-flower .page::after{inset:8px!important;border-radius:18px;background:
+ radial-gradient(ellipse at 2% 30%,rgba(139,194,149,.38) 0 5px,transparent 6px),radial-gradient(ellipse at 98% 39%,rgba(139,194,149,.38) 0 5px,transparent 6px),
+ radial-gradient(ellipse at 3% 68%,rgba(139,194,149,.34) 0 5px,transparent 6px),radial-gradient(ellipse at 97% 73%,rgba(139,194,149,.34) 0 5px,transparent 6px)!important}
+
+/* パステルチェック：布のようなギンガム。中央は薄くして回答を邪魔しない */
+.book.theme-check .page{background:#fffafd!important}
+.book.theme-check .page::before{background:
+ linear-gradient(90deg,rgba(255,255,255,.72) 16%,rgba(255,255,255,.38) 50%,rgba(255,255,255,.72) 84%),
+ repeating-linear-gradient(90deg,rgba(242,164,201,.19) 0 14px,rgba(255,255,255,.02) 14px 28px),
+ repeating-linear-gradient(0deg,rgba(147,202,234,.17) 0 14px,rgba(255,255,255,.02) 14px 28px),#fffafd!important;background-size:auto,28px 28px,28px 28px,auto!important}
+.book.theme-check .page::after{inset:8px!important;border:1px dashed rgba(170,136,196,.22);border-radius:18px;background:linear-gradient(90deg,rgba(255,190,219,.10),transparent 12%,transparent 88%,rgba(169,216,242,.11))!important}
+
+/* 封印ノ頁：完全な漆黒台紙。回答欄も黒紫で統一し、白い箱・黒棒を完全排除 */
+.book.theme-seal .page{background:#07050a!important;color:#eadff1!important;box-shadow:inset 0 0 70px rgba(105,46,128,.30)!important}
+.book.theme-seal .left::before{background:repeating-conic-gradient(from 0deg at 8% 15%,rgba(198,125,230,.15) 0 1deg,transparent 1deg 30deg),radial-gradient(circle at 8% 15%,transparent 0 48px,rgba(198,125,230,.30) 49px 51px,transparent 52px 63px,rgba(198,125,230,.17) 64px 65px,transparent 66px),linear-gradient(135deg,rgba(102,39,127,.28),transparent 28%,transparent 72%,rgba(116,28,69,.22)),#07050a!important}
+.book.theme-seal .right::before{background:repeating-conic-gradient(from 15deg at 92% 84%,rgba(173,70,130,.14) 0 1deg,transparent 1deg 30deg),radial-gradient(circle at 92% 84%,transparent 0 58px,rgba(173,70,130,.28) 59px 61px,transparent 62px 76px,rgba(173,70,130,.15) 77px 78px,transparent 79px),linear-gradient(225deg,rgba(102,39,127,.27),transparent 28%,transparent 72%,rgba(116,28,69,.23)),#07050a!important}
+.book.theme-seal .page::after{inset:9px!important;border:1px solid rgba(183,119,210,.18);border-radius:18px;box-shadow:inset 0 0 18px rgba(141,73,171,.08);background:radial-gradient(circle at 50% 2%,rgba(221,174,240,.7) 0 1px,transparent 2px),radial-gradient(circle at 50% 98%,rgba(221,174,240,.55) 0 1px,transparent 2px)!important}
+.book.theme-seal .title,.book.theme-seal .sec,.book.theme-seal .game-title{color:#ead8f4!important;text-shadow:0 0 7px rgba(184,104,220,.42)!important}
+.book.theme-seal .title small,.book.theme-seal .intro,.book.theme-seal .sentence{color:#d9cce1!important}
+.book.theme-seal .name,.book.theme-seal .blank{color:#f2eaf6!important;border-color:#84639a!important}
+.book.theme-seal .cloud,
+.book.theme-seal .card,
+.book.theme-seal .oshi,
+.book.theme-seal .game,
+.book.theme-seal .free{
+ background:#17111e!important;background-image:none!important;border-color:#805c95!important;color:#f1e9f5!important;box-shadow:inset 0 0 0 1px rgba(213,169,233,.07)!important
+}
+.book.theme-seal .card:nth-child(n){background:#17111e!important;background-image:none!important;border-color:#805c95!important}
+.book.theme-seal .card::before,.book.theme-seal .card::after{display:none!important;content:none!important}
+.book.theme-seal .label{color:#cdbed7!important;background:transparent!important}
+.book.theme-seal .ans,.book.theme-seal .answerText{color:#f5edf8!important;background:transparent!important;background-image:none!important;box-shadow:none!important}
+.book.theme-seal .hole{background:#2a2032!important;border-color:#806693!important}
+.book.theme-seal .photo{background:linear-gradient(145deg,#17111e,#21162a)!important;border-color:#8a65a0!important;box-shadow:4px 5px 0 rgba(76,42,91,.55),-3px -3px 0 rgba(137,87,158,.24)!important}
+.book.theme-seal .photo span{color:#bfa9cc!important}
+.book.theme-seal .title .ribbon,.book.theme-seal .sec,.book.theme-seal .game-title{background:linear-gradient(transparent 60%,rgba(118,46,141,.46) 60% 88%,transparent 88%)!important}
+
+/* ===== 5 complete stationery themes / 2026-10-02 ===== */
+.book[class*="theme-"] .page{color:var(--ink)!important}
+.book[class*="theme-"] .title,.book[class*="theme-"] .sec{color:var(--accent)!important;text-shadow:none!important}
+.book[class*="theme-"] .title small,.book[class*="theme-"] .intro,.book[class*="theme-"] .sentence,.book[class*="theme-"] .label{color:var(--ink)!important}
+.book[class*="theme-"] .name,.book[class*="theme-"] .blank{color:var(--ink)!important;border-color:var(--accent)!important}
+.book[class*="theme-"] .ans,.book[class*="theme-"] .answerText{color:var(--ink)!important;background:transparent!important;box-shadow:none!important}
+.book[class*="theme-"] .card:nth-child(n),.book[class*="theme-"] .cloud,.book[class*="theme-"] .free,.book[class*="theme-"] .oshi,.book[class*="theme-"] .game{border-color:var(--edge)!important;background:var(--panel)!important;background-image:none!important}
+.book[class*="theme-"] .card::before{content:none!important}
+.book[class*="theme-"] .card::after{border-color:var(--edge)!important;background:none!important}
+.book[class*="theme-"] .photo{border-color:var(--accent)!important;background:var(--photo)!important}
+.book[class*="theme-"] .photo span,.book[class*="theme-"] .photo::before{color:var(--accent)!important}
+.book[class*="theme-"] .hole{background:var(--edge)!important;border-color:var(--accent)!important}
+.book[class*="theme-"] .sec::before{background:none!important}
+.book[class*="theme-"] .sec::after{background:var(--edge)!important}
+.book.theme-yumekawa{--ink:#514271;--accent:#8353b7;--edge:#b69ade;--panel:#faf5ff;--photo:linear-gradient(145deg,#e1d5ff,#fce4fb)}
+.book.theme-yumekawa .page::before{background:radial-gradient(ellipse at 12% 12%,#b6dfff,transparent 45%),radial-gradient(ellipse at 95% 88%,#e4b9ff,transparent 48%),linear-gradient(135deg,#ece2ff,#fbdff3)!important}
+.book.theme-yumekawa .page::after{inset:10px!important;border:2px solid #ffffffa0!important;background:radial-gradient(circle at 20% 95%,#fff 0 22px,transparent 23px),radial-gradient(circle at 27% 98%,#fff 0 30px,transparent 31px),radial-gradient(circle at 90% 4%,#fff 0 19px,transparent 20px)!important}
+.book.theme-yumekawa .title{border-bottom:2px solid #fff!important}
+.book.theme-yumekawa .sec{background:linear-gradient(90deg,#fff9,transparent)!important;border-radius:20px;padding-left:8px}
+.book.theme-yumekawa .card:nth-child(n){border-radius:18px!important;box-shadow:0 2px 0 #aa87d42a!important}
+.book.theme-yumekawa .cloud,.book.theme-yumekawa .free,.book.theme-yumekawa .oshi,.book.theme-yumekawa .game{border-radius:22px!important;border-style:dashed!important}
+.book.theme-yumekawa .photo{border-radius:24px!important;box-shadow:0 0 0 4px #ffffff80!important}
+.book.theme-heisei{--ink:#71305f;--accent:#d62b85;--edge:#ec78b0;--panel:#fff1f8;--photo:linear-gradient(135deg,#ffd9ec,#ffe9a3,#bdefff)}
+.book.theme-heisei .page::before{background:radial-gradient(circle at 7% 7%,#fff 0 4px,transparent 5px),radial-gradient(circle at 93% 91%,#fff 0 5px,transparent 6px),linear-gradient(135deg,#ffb8df,#f8d4ff 35%,#b9ecff 70%,#fff1a5)!important;background-size:47px 47px,61px 61px,auto!important}
+.book.theme-heisei .page::after{inset:9px!important;border:3px dotted #fff!important;background:none!important;box-shadow:inset 0 0 0 2px #ed69b7!important}
+.book.theme-heisei .title{border-color:#e9459f!important;text-shadow:2px 2px #fff!important}
+.book.theme-heisei .title .ribbon,.book.theme-heisei .sec{background:linear-gradient(transparent 52%,#ffec7c 52% 92%,transparent 92%)!important}
+.book.theme-heisei .card:nth-child(n){border:2px solid #f16aaa!important;border-radius:12px!important;box-shadow:2px 2px 0 #e94b9c38!important}
+.book.theme-heisei .card:nth-child(4n+2){background:#e6faff!important;border-color:#45bad4!important}
+.book.theme-heisei .card:nth-child(4n+3){background:#fff9d7!important;border-color:#dfa935!important}
+.book.theme-heisei .card:nth-child(4n+4){background:#f2e6ff!important;border-color:#a66ada!important}
+.book.theme-heisei .photo{border:3px solid #e9459f!important;border-radius:10px!important;box-shadow:4px 4px 0 #fff!important}
+.book.theme-heisei .cloud,.book.theme-heisei .oshi,.book.theme-heisei .game,.book.theme-heisei .free{border:2px dashed #e4549a!important;border-radius:15px!important}
+.book.theme-flower{--ink:#64483e;--accent:#a85366;--edge:#cf9c91;--panel:#fffaf0;--photo:linear-gradient(145deg,#f8e3cb,#f4ced4)}
+.book.theme-flower .page::before{background:radial-gradient(circle at 10px 14px,#da8797 0 5px,transparent 6px),radial-gradient(circle at 19px 14px,#e7a5ad 0 5px,transparent 6px),radial-gradient(circle at 14px 21px,#d997a0 0 5px,transparent 6px),radial-gradient(ellipse at 26px 27px,#91aa79 0 4px,transparent 5px),#f1dec3!important;background-size:49px 49px!important}
+.book.theme-flower .page::after{inset:12px 21px!important;border:3px double #bb8b76!important;border-radius:8px!important;background:#fff7e9dd!important;box-shadow:0 0 0 5px #fff7e96b!important}
+.book.theme-flower .title{border-bottom:3px double #c28f80!important;font-family:'Klee One',serif!important}
+.book.theme-flower .title .ribbon,.book.theme-flower .sec{background:none!important;font-family:'Klee One',serif!important}
+.book.theme-flower .sec::after{height:3px!important;background:repeating-linear-gradient(90deg,#c99586 0 3px,transparent 3px 6px)!important}
+.book.theme-flower .card:nth-child(n){border:1px solid #cda196!important;border-radius:4px 13px!important;box-shadow:inset 0 0 0 2px #f3e0d3!important}
+.book.theme-flower .cloud,.book.theme-flower .oshi,.book.theme-flower .game,.book.theme-flower .free{border:3px double #cda196!important;border-radius:8px!important}
+.book.theme-flower .photo{border:4px double #b77980!important;border-radius:45px 45px 8px 8px!important;transform:none!important}
+.book.theme-check{--ink:#284f4a;--accent:#246e66;--edge:#76aea0;--panel:#f8fff7;--photo:linear-gradient(145deg,#d0ebd4,#fff2b6)}
+.book.theme-check .page::before{background:repeating-linear-gradient(90deg,#9cc9aa55 0 15px,transparent 15px 30px),repeating-linear-gradient(0deg,#9cc9aa55 0 15px,transparent 15px 30px),#e5f1db!important}
+.book.theme-check .page::after{inset:10px 23px!important;border:1px solid #8eb69d!important;border-radius:3px!important;background:repeating-linear-gradient(0deg,transparent 0 19px,#95bbc42b 19px 20px),#fffef2e8!important;box-shadow:3px 3px 0 #497d5d22!important}
+.book.theme-check .title{border-bottom:2px solid #629585!important;font-family:'Yomogi',sans-serif!important}
+.book.theme-check .title .ribbon,.book.theme-check .sec{background:linear-gradient(transparent 48%,#f8dc7c 48% 91%,transparent 91%)!important;font-family:'Yomogi',sans-serif!important}
+.book.theme-check .card:nth-child(n){border-radius:3px!important;border:1px solid #7eaa98!important;border-left:4px solid #70a18d!important;box-shadow:2px 2px 0 #62958522!important}
+.book.theme-check .card:nth-child(3n){background:#fff8ce!important;border-left-color:#c8a445!important}
+.book.theme-check .cloud,.book.theme-check .oshi,.book.theme-check .game,.book.theme-check .free{border-radius:3px!important;border:1px dashed #639780!important}
+.book.theme-check .photo{border:4px solid #fff!important;outline:1px solid #7a9a80;box-shadow:3px 4px 0 #63978033!important;border-radius:2px!important}
+.book.theme-seal{--ink:#f0e5f7;--accent:#d8b3ee;--edge:#805c95;--panel:#17111e;--photo:linear-gradient(145deg,#17111e,#21162a)}
+.book.theme-seal .title{border-color:#805c95!important}
+.book.theme-seal .title,.book.theme-seal .sec{font-family:'Yuji Syuku',serif!important;text-shadow:0 0 7px #b868dc66!important}
+.book.theme-seal .card:nth-child(n){border-radius:2px 10px!important;border:1px solid #805c95!important;box-shadow:inset 3px 0 #533063!important}
+.book.theme-seal .cloud,.book.theme-seal .oshi,.book.theme-seal .game,.book.theme-seal .free{border:3px double #805c95!important;border-radius:6px!important}
+.book.theme-seal .sec::after{background:linear-gradient(90deg,#805c95,transparent)!important}
+
+
+/* Canvas stationery uses the same image in preview and PNG export. */
+.book[class*="theme-"] .page::before,.book[class*="theme-"] .page::after{display:none!important;content:none!important;mix-blend-mode:normal!important}
+.book[class*="theme-"] .page{background-image:var(--paper-image)!important;background-size:500px 643px!important;background-repeat:no-repeat!important;box-shadow:none!important}
+.book[class*="theme-"] .card:nth-child(n),.book[class*="theme-"] .cloud,.book[class*="theme-"] .free,.book[class*="theme-"] .oshi,.book[class*="theme-"] .game{box-shadow:none!important;filter:none!important;clip-path:none!important}
+.book[class*="theme-"] .card::before,.book[class*="theme-"] .card::after{display:none!important;content:none!important}
+.book[class*="theme-"] .photo{box-shadow:none!important}
+/* Answer handwriting: use the font's real regular weight. */
+.book .answerText,.book .ans,.book .blank,.book .name{font-weight:400!important;font-synthesis:none!important}
+#fontSample{margin-top:9px;padding:12px;border:1px dashed #bca5cf;border-radius:12px;background:#fffafd;font-size:20px;line-height:1.6;font-weight:400;font-synthesis:none;overflow-wrap:anywhere}
+</style></head><body>
+<header><h1>みったーぷろふ ♡</h1><p>みんなのこと、もっと知りたい。</p></header>
+<div class="app"><div class="editor"><h2>ぷろふを書く ✎</h2><p class="note">入力内容と文字タイプはこの端末に自動保存されるよ。</p>
+<div class="field"><label>♡ 台紙のデザイン</label><select id="themeSelect"><option value="theme-yumekawa">ゆめかわ水彩</option><option value="theme-heisei">平成プロフ帳</option><option value="theme-flower">お花</option><option value="theme-check">ミントチェック・ノート</option><option value="theme-seal">封印ノ頁 † 中二病</option></select></div>
+<div class="field"><label>✎ 回答の文字タイプ</label><select id="fontSelect">
+<optgroup label="可愛い字"><option value="'Hachi Maru Pop'">可愛い字：ころころ丸文字</option><option value="'Yomogi'">可愛い字：ゆるふわ手書き</option></optgroup>
+<optgroup label="かっこいい字"><option value="'Yuji Boku'">かっこいい字：勢いのある筆文字</option><option value="'Yuji Syuku'">かっこいい字：達筆な手書き</option></optgroup>
+<optgroup label="雑な字"><option value="'Darumadrop One'">雑な字：太くて自由な字</option><option value="'Yusei Magic'">雑な字：元気なくせ字</option></optgroup>
+<optgroup label="きれいな字"><option value="'Klee One'" selected>きれいな字：丁寧な手書き</option><option value="'Zen Kurenaido'">きれいな字：すっきり細字</option></optgroup></select>
+<div id="fontSample" aria-label="選んだ文字の試し書き">ひこの ♡ あいうえお カキクケコ<br>漢字：春夏秋冬・好きな音楽<br>ABC abc 0123456789</div><div class="note" id="fontStatus" role="status" style="margin-top:5px">文字を準備中…</div></div>
+<div class="photo-upload"><label class="photoBtn" for="imageInput">📷 写真・イラストを入れる ♡</label><input type="file" id="imageInput" accept="image/*"><div class="ratio-guide"><span class="ratio-icon" aria-hidden="true"></span><div class="ratio-copy"><b>おすすめは縦 4：5</b><span class="ratio-chip">例 800×1000px</span><br>ほかの比率でもOK！ 枠に合わせて少し切り抜かれることがあります。</div></div></div><div id="form"></div>
+<button class="save" onclick="downloadProfile()">📷 見開きをPNGで保存</button><button class="clear" onclick="clearProfile()">入力をすべて消す</button></div>
+<div class="preview"><p class="tip">← スマホでは横にスワイプして見てね →</p><div class="scroll"><div class="book theme-yumekawa" id="book">
+<section class="page left"><div id="holesL"></div>
+<span class="sticker heart mini" style="right:20px;top:42px;--r:8deg">♡</span>
+<span class="sticker star" style="right:44px;top:174px;--r:-9deg">☆</span>
+<span class="sticker blue mini" style="right:18px;top:292px;--r:7deg">✧</span>
+<span class="sticker bunny" style="left:18px;bottom:18px;--r:-7deg">♡</span>
+<span class="sticker cherry" style="left:20px;top:448px;--r:-8deg">🍒</span>
+<span class="sticker holo mini" style="right:20px;top:365px;--r:9deg">✦</span>
+<span class="tiny-spark p" style="left:30px;top:424px">♡</span>
+<span class="tiny-spark b" style="right:31px;top:398px">✧</span>
+<span class="tiny-spark y" style="left:265px;bottom:96px">★</span>
+<span class="scrap heart" style="right:25px;top:48px">♡</span>
+<span class="scrap star" style="right:55px;top:172px">☆</span>
+<span class="scrap blue" style="right:18px;top:285px">✧</span>
+<span class="scrap rabbit" style="left:18px;bottom:20px">♡</span>
+<span class="washi b" style="right:58px;top:300px;transform:rotate(12deg)"></span>
+<span class="washi y" style="left:260px;bottom:108px;transform:rotate(-8deg)"></span><span class="sticker s1">♡ ☆ ♡</span><span class="sticker s2">✿</span><span class="sticker s3">☆</span><span class="tape purple" style="right:45px;top:305px;transform:rotate(14deg)"></span><span class="doodle pink" style="right:20px;top:28px">♡</span><span class="doodle sky" style="right:35px;top:150px">☆ ♡</span><span class="doodle pink" style="left:18px;bottom:20px">♡</span>
+<span class="cute-icon ci1">♡ ✿</span><span class="cute-icon ci2">☆</span><span class="cute-icon ci3">♕ ♡</span><div class="inner"><h1 class="title"><span class="ribbon">みったーぷろふ ♡</span> <small>わたし・ぼくのこと</small></h1><div class="profile"><div class="photo"><img id="previewImage"><span id="photoPlaceholder">PHOTO ♡</span></div><div><div class="intro">わたし・ぼくの名前は</div><div class="name answerText" id="p-name">なまえ</div><div class="sentence">みんなから <span class="blank answerText long" id="p-nickname">---</span> って呼ばれてるよ♥<br>誕生日は <span class="blank answerText" id="p-birthMonth">--</span> 月 <span class="blank answerText" id="p-birthDay">--</span> 日だよ♪<br>干支は <span class="blank answerText" id="p-eto">---</span> で、血液型は <span class="blank answerText" id="p-blood">---</span> 型！<br>MBTIは <span class="blank answerText long" id="p-mbti">---</span>！</div></div></div>
+<div class="cloud">自分では <span class="blank answerText long" id="p-personality">---</span> な性格だと思う！<br>子供の頃の夢は <span class="blank answerText long" id="p-childDream">---</span> だったよ♡</div>
+<div class="sec">My favorites ♡</div><div class="grid" id="favorites"></div><div class="sec">Free Space ♡</div><div class="freegrid"><div class="free"><span class="label">☕ 最近ハマっているもの♡</span><div class="ans" id="p-boom">---</div></div><div class="free"><span class="label">なんでも一言！</span><div class="ans" id="p-message">---</div></div></div></div></section>
+<section class="page right">
+<span class="heisei-deco bubble d1">♡</span>
+<span class="heisei-deco blue d2">☆</span>
+<span class="heisei-deco heart d3">♡</span>
+<span class="heisei-deco purple d4">✧</span>
+<span class="heisei-deco star d5">☆</span>
+<span class="holo h1"></span>
+<div id="holesR"></div>
+<span class="sticker heart" style="right:19px;top:43px;--r:7deg">♡</span>
+<span class="sticker star mini" style="right:20px;top:198px;--r:-8deg">☆</span>
+<span class="sticker blue mini" style="left:17px;top:401px;--r:-8deg">✧</span>
+<span class="sticker ribbon" style="right:19px;top:282px;--r:8deg">🎀</span>
+<span class="sticker flower" style="right:18px;top:448px;--r:-7deg">✿</span>
+<span class="sticker candy2" style="left:18px;bottom:118px;--r:-8deg">🍬</span>
+<span class="tiny-spark p" style="right:53px;top:424px">♡</span>
+<span class="tiny-spark b" style="left:31px;top:438px">✧</span>
+<span class="tiny-spark y" style="right:33px;bottom:160px">★</span>
+<span class="scrap heart" style="right:30px;top:42px">♡</span>
+<span class="scrap star" style="right:22px;top:198px">☆</span>
+<span class="scrap blue" style="left:16px;top:405px">✧</span>
+<span class="scrap lav" style="right:30px;bottom:170px">♡☆</span>
+<span class="washi" style="right:56px;top:22px;transform:rotate(12deg)"></span>
+<span class="washi p" style="left:25px;top:402px;transform:rotate(-9deg)"></span><span class="sticker s2">♡</span><span class="sticker s4">☆ ♡</span><span class="tape blue" style="left:22px;top:405px;transform:rotate(-8deg)"></span><span class="tape" style="right:55px;top:22px;transform:rotate(13deg)"></span><span class="doodle pink" style="right:20px;top:30px">♡</span><span class="doodle sky" style="right:15px;top:200px">☆</span>
+<span class="cute-icon ci1">♡</span><span class="cute-icon ci2">✿ ☆</span><span class="cute-icon ci4">♡ ☆</span><div class="inner"><h1 class="title">Love & Secret ♡ <small>ちょっとだけ秘密のこと…</small></h1><div class="grid" id="lovegrid"></div><div class="sec">My Oshi ♡</div><div class="oshi"><div class="grid" id="oshigrid"></div></div><div class="sec game-title" style="font-size:18px">みったーで当てはめて！</div><div class="game"><div class="grid" id="gamegrid"></div></div></div>
+<img class="chars" src="file_000000005bdc8209842f5ab90847992c.png" alt=""></section></div></div></div></div>
+<script>
+const sections=[
+["♡ 基本プロフィール",[["name","名前"],["birthMonth","誕生日"],["birthDay",""],["eto","干支"],["blood","血液型"],["mbti","MBTI"],["nickname","みんなから何て呼ばれてる？"],["personality","自分ではどんな性格だと思う？"],["childDream","子供の頃の夢は？"]]],
+["☆ 好きなもの",[["color","好きな色"],["food","好きな食べ物"],["animal","好きな動物"],["music","好きな音楽"],["manga","好きな漫画"],["dramaNow","好きなドラマ【今】"],["dramaOld","好きなドラマ【昔】"]]],
+["♡ Love & Secret",[["love","好きな人"],["loveReason","その人のどこが好き？"],["type","好みのタイプ"],["fetish","フェチ部位"],["weakness","弱点"],["situation","弱いシチュ"],["role","あなたは受け攻め？"],["habit","好きな癖"]]],
+["♡ 推しについて",[["oshi","あなたの推しは？"],["oshiReason","推しのどこが好き？"],["oshiWord","推しを一言で表すなら？"],["oshiMeet","推しに会えたら何したい？"]]],
+["☆ みったーで当てはめて！",[["strongDrink","お酒に一番強そう"],["weakDrink","お酒に一番弱そう"],["island","無人島でも生き残りそう"],["popular","実は一番モテそう"],["travel","一緒に旅行するなら"]]],
+["♡ Free Space",[["boom","最近ハマっているもの"],["message","自由に一言！"]]]
+];
+const form=document.getElementById("form"),fields=[];
+sections.forEach(([title,items])=>{let g=document.createElement("div");g.className="group";g.innerHTML="<h3>"+title+"</h3>";items.forEach(([id,label])=>{fields.push(id);if(id==="birthDay")return;let f=document.createElement("div");f.className="field";if(id==="birthMonth"){f.innerHTML='<label>誕生日</label><div class="birth"><input id="birthMonth" placeholder="月" inputmode="numeric"><input id="birthDay" placeholder="日" inputmode="numeric"></div>'}else{let ta=["personality","loveReason","type","situation","oshiReason","oshiMeet","message"].includes(id);f.innerHTML="<label>"+label+"</label><"+(ta?"textarea":"input")+" id='"+id+"'"+(id==="role"?" placeholder='自由記入'":"")+"></"+(ta?"textarea":"input")+">"}g.appendChild(f)});form.appendChild(g)});
+const pg={favorites:[["color","♡ 好きな色"],["food","🍴 好きな食べ物"],["animal","🐱 好きな動物"],["music","♫ 好きな音楽"],["manga","▱ 好きな漫画"],["dramaNow","▣ 好きなドラマ・今"],["dramaOld","▣ 好きなドラマ・昔"]],lovegrid:[["love","好きな人は…♡"],["loveReason","その人のどこが好き？"],["type","好みのタイプは？"],["fetish","フェチ部位は…"],["weakness","弱点は…"],["situation","こんなシチュに弱い…"],["role","あなたは受け攻め？"],["habit","好きな癖は…"]],oshigrid:[["oshi","私の推しは…！"],["oshiWord","推しを一言で表すなら？"],["oshiReason","推しのどこが好き？"],["oshiMeet","推しに会えたら何したい？"]],gamegrid:[["strongDrink","🍺 お酒に一番強そう"],["weakDrink","🥺 お酒に一番弱そう"],["island","🌴 無人島でも生き残りそう"],["popular","♡ 実は一番モテそう"],["travel","✈ 一緒に旅行するなら"]]};
+Object.entries(pg).forEach(([box,items])=>{let e=document.getElementById(box);items.forEach(([id,l])=>{let d=document.createElement("div");d.className="card "+(["type","situation","oshiReason","oshiMeet"].includes(id)?"wide":"");d.innerHTML="<span class='label'>"+l+"</span><div class='ans answerText' id='p-"+id+"'>---</div>";e.appendChild(d)})});
+function holes(id){let e=document.getElementById(id);[70,165,260,355,450,545].forEach(y=>{let h=document.createElement("i");h.className="hole";h.style.top=y+"px";e.appendChild(h)})}holes("holesL");holes("holesR");
+function update(id){let i=document.getElementById(id),o=document.getElementById("p-"+id);if(!i||!o)return;let z="---";if(id==="name")z="なまえ";if(id==="birthMonth"||id==="birthDay")z="--";o.textContent=i.value.trim()||z}
+fields.forEach(id=>{let i=document.getElementById(id);if(!i)return;let s=localStorage.getItem("mitter16_"+id);if(s!==null)i.value=s;update(id);i.oninput=()=>{update(id);localStorage.setItem("mitter16_"+id,i.value)}});
+
+const themeSelect=document.getElementById("themeSelect"),bookEl=document.getElementById("book");
+const themeClasses=["theme-yumekawa","theme-heisei","theme-flower","theme-check","theme-seal"];
+
+function makePaper(theme){
+ const c=document.createElement('canvas');c.width=1000;c.height=1286;const x=c.getContext('2d');x.scale(2,2);
+ const fill=color=>{x.fillStyle=color;x.fillRect(0,0,500,643)};
+ const dot=(a,b,r,color)=>{x.beginPath();x.arc(a,b,r,0,Math.PI*2);x.fillStyle=color;x.fill()};
+ const frame=(color,pad=10)=>{x.strokeStyle=color;x.lineWidth=1.5;x.strokeRect(pad,pad,500-pad*2,643-pad*2)};
+ if(theme==='theme-yumekawa'){
+  const g=x.createLinearGradient(0,0,500,643);g.addColorStop(0,'#d7ecff');g.addColorStop(.5,'#f4ddff');g.addColorStop(1,'#ffe0f0');fill(g);
+  for(let a=20;a<500;a+=65)for(let b=20;b<643;b+=87){dot(a,b,1.5,'#ffffff');}
+  for(const [a,b] of [[40,610],[425,28]]){dot(a,b,18,'#fff');dot(a+25,b+5,24,'#fff');dot(a+49,b,17,'#fff');}
+  frame('#ffffff',10);
+ }else if(theme==='theme-heisei'){
+  const g=x.createLinearGradient(0,0,500,643);g.addColorStop(0,'#ffb8df');g.addColorStop(.35,'#f8d4ff');g.addColorStop(.7,'#b9ecff');g.addColorStop(1,'#fff1a5');fill(g);
+  x.strokeStyle='#e96eb5';x.lineWidth=16;x.strokeRect(18,18,464,607);
+  for(let a=12;a<490;a+=6){dot(a,10,1.2,'#fff');dot(a,633,1.2,'#fff')}
+  for(let b=12;b<633;b+=6){dot(10,b,1.2,'#fff');dot(490,b,1.2,'#fff')}
+ }else if(theme==='theme-flower'){
+  fill('#fff4e3');
+  const flower=(a,b,r)=>{x.fillStyle='#8da97a';x.beginPath();x.ellipse(a+9,b+10,6,2.5,.7,0,Math.PI*2);x.fill();for(let k=0;k<5;k++)dot(a+Math.cos(k*1.256)*r,b+Math.sin(k*1.256)*r,r*.7,'#df9ba8');dot(a,b,r*.45,'#efcf7a')};
+  for(let b=25;b<643;b+=42){flower(13,b,4);flower(487,b+12,4)}
+  for(let a=38;a<480;a+=43){flower(a,17,4);flower(a,616,5)}
+  frame('#c19481',23);
+ }else if(theme==='theme-check'){
+  fill('#edf5e1');x.fillStyle='#bad9bf';for(let a=0;a<500;a+=24)x.fillRect(a,0,12,643);x.globalAlpha=.55;for(let b=0;b<643;b+=24)x.fillRect(0,b,500,12);x.globalAlpha=1;
+  x.fillStyle='#fffef0';x.fillRect(24,12,452,614);x.strokeStyle='#c8ded7';x.lineWidth=.5;for(let b=32;b<624;b+=20){x.beginPath();x.moveTo(25,b);x.lineTo(475,b);x.stroke()}
+  frame('#86ad95',24);
+ }else{
+  fill('#09050e');frame('#4f325f',10);x.strokeStyle='#59356e';x.lineWidth=1;
+  for(const [a,b] of [[25,80],[470,580]]){for(const r of [25,36,47]){x.beginPath();x.arc(a,b,r,0,Math.PI*2);x.stroke()}for(let k=0;k<6;k++){x.beginPath();x.moveTo(a+Math.cos(k*Math.PI/3)*47,b+Math.sin(k*Math.PI/3)*47);x.lineTo(a+Math.cos((k+2)*Math.PI/3)*47,b+Math.sin((k+2)*Math.PI/3)*47);x.stroke()}}
+ }
+ return 'url("'+c.toDataURL('image/png')+'")';
+}
+function applyPaper(theme){const bg=makePaper(theme);bookEl.querySelectorAll('.page').forEach(p=>p.style.setProperty('--paper-image',bg));}
+
+function setTheme(){themeClasses.forEach(c=>bookEl.classList.remove(c));bookEl.classList.add(themeSelect.value);applyPaper(themeSelect.value);localStorage.setItem("mitta_theme",themeSelect.value)}
+const savedTheme=localStorage.getItem("mitta_theme");if(savedTheme&&themeClasses.includes(savedTheme))themeSelect.value=savedTheme;setTheme();themeSelect.onchange=setTheme;
+const fs=document.getElementById("fontSelect"),fontSample=document.getElementById("fontSample"),fontStatus=document.getElementById("fontStatus");
+function answerCharacters(){return [...new Set([...bookEl.querySelectorAll('.answerText,.ans,.blank,.name')].map(el=>el.textContent).join('')+fontSample.textContent)].join('')}
+async function loadHandwriting(doc,family,text){
+ const faces=await doc.fonts.load('400 18px "'+family+'"',text);
+ await doc.fonts.ready;
+ if(!faces.length)throw new Error('手書きフォントを読み込めませんでした');
+}
+let fontRequest=0;
+async function setFont(){
+ const request=++fontRequest,value=fs.value;
+ bookEl.style.setProperty('--answer-font',value);fontSample.style.fontFamily=value+', sans-serif';
+ localStorage.setItem('mitta_font',value);fontStatus.textContent='手書き文字を準備中…';
+ try{await loadHandwriting(document,value.replaceAll("'",''),answerCharacters());if(request===fontRequest)fontStatus.textContent='試し書きで漢字・英数字の違いも見てね。'}
+ catch(e){if(request===fontRequest)fontStatus.textContent='文字を読み込めなかったよ。通信を確認して、もう一度選んでね。'}
+}
+let sf=localStorage.getItem('mitta_font');if([...fs.options].some(o=>o.value===sf))fs.value=sf;
+setFont();fs.onchange=setFont;
+const ii=document.getElementById("imageInput"),pi=document.getElementById("previewImage"),ph=document.getElementById("photoPlaceholder");ii.onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=x=>{pi.src=x.target.result;pi.style.display="block";ph.style.display="none";pi.closest(".photo").classList.add("has-image");try{localStorage.setItem("mitter16_image",x.target.result)}catch{}};r.readAsDataURL(f)};let im=localStorage.getItem("mitter16_image");if(im){pi.src=im;pi.style.display="block";ph.style.display="none";pi.closest(".photo").classList.add("has-image")}
+async function downloadProfile(){
+ const btn=document.querySelector(".save"),old=btn.textContent,book=document.getElementById("book");
+ btn.disabled=true;btn.textContent="手書き文字を準備中…";
+ try{
+  const selectedFont=fs.value,chosen=selectedFont.replaceAll("'","");
+  const characters=answerCharacters();
+  await loadHandwriting(document,chosen,characters);
+  const imgs=[...book.querySelectorAll("img")].filter(x=>x.src);
+  await Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(r=>{img.onload=r;img.onerror=r})));
+  book.style.setProperty("--answer-font",selectedFont);
+
+  btn.textContent="見開きを保存中…";
+  const paintStyles=[...book.querySelectorAll('.page,.card,.cloud,.oshi,.game,.free,.photo,.label,.ans,.name,.blank,.title,.sec')].map(el=>{
+   const st=getComputedStyle(el);return {color:st.color,backgroundColor:st.backgroundColor,borderTopColor:st.borderTopColor,borderRightColor:st.borderRightColor,borderBottomColor:st.borderBottomColor,borderLeftColor:st.borderLeftColor};
+  });
+  const canvas=await html2canvas(book,{
+   scale:2,width:1000,height:643,windowWidth:1000,windowHeight:643,
+   scrollX:0,scrollY:0,useCORS:true,allowTaint:false,backgroundColor:"#fff",
+   logging:false,imageTimeout:15000,
+   onclone:async(doc)=>{
+    const clone=doc.getElementById("book");
+    clone.querySelectorAll('.page,.card,.cloud,.oshi,.game,.free,.photo,.label,.ans,.name,.blank,.title,.sec').forEach((el,i)=>{
+      for(const [prop,val] of Object.entries(paintStyles[i]))el.style.setProperty(prop.replace(/[A-Z]/g,m=>'-'+m.toLowerCase()),val,'important');
+    });
+    clone.style.width="1000px";clone.style.height="643px";clone.style.transform="none";
+    clone.querySelectorAll(".page").forEach(p=>{p.style.width="500px";p.style.height="643px";p.style.transform="none"});
+    const ri=clone.querySelector(".page.right .inner");if(ri){ri.style.transform="none";ri.style.width="auto"};
+    clone.style.setProperty("--answer-font",selectedFont);
+    clone.querySelectorAll(".answerText,.ans,.blank,.name").forEach(el=>{
+      el.style.fontFamily=selectedFont+', "Yu Gothic", sans-serif';
+      el.style.fontSynthesis="none";
+      el.style.setProperty("font-weight","400","important");
+    });
+    await loadHandwriting(doc,chosen,characters);
+    const trio=clone.querySelector(".chars");
+    if(trio){trio.style.right="10px";trio.style.bottom="12px";trio.style.width="168px";trio.style.maxHeight="124px"}
+   }
+  });
+  const dataURL=canvas.toDataURL("image/png",1);
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if(isIOS){
+   let viewer=document.getElementById("iosSaveViewer");
+   if(!viewer){
+    viewer=document.createElement("div");viewer.id="iosSaveViewer";
+    viewer.innerHTML=`<div class="ios-save-panel"><button type="button" class="ios-close" aria-label="閉じる">×</button><div class="ios-save-title">PNGができたよ ♡</div><div class="ios-save-note">下の画像を長押しして「写真に保存」を選んでね。</div><img class="ios-save-image" alt="みったーぷろふ 保存用PNG"><div class="ios-save-note small">うまく出ない時は画像をタップしてから長押ししてね。</div></div>`;
+    document.body.appendChild(viewer);viewer.querySelector(".ios-close").onclick=()=>viewer.classList.remove("show");viewer.onclick=e=>{if(e.target===viewer)viewer.classList.remove("show")};
+   }
+   viewer.querySelector(".ios-save-image").src=dataURL;viewer.classList.add("show");
+  }else{
+   const link=document.createElement("a");link.download="mitta-profile.png";link.href=dataURL;document.body.appendChild(link);link.click();link.remove();
+  }
+ }catch(e){
+  console.error(e);alert("文字の読み込み、またはPNG保存に失敗しました。通信を確認して、もう一度試してね。");
+ }finally{btn.textContent=old;btn.disabled=false}
+}
+function clearProfile(){if(!confirm("入力を全部消しますか？"))return;fields.forEach(id=>{localStorage.removeItem("mitter16_"+id);let i=document.getElementById(id);if(i)i.value="";update(id)});localStorage.removeItem("mitter16_image");location.reload()}
+</script></body></html>
